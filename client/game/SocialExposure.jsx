@@ -4,9 +4,29 @@ import { Card, Elevation } from "@blueprintjs/core";
 import { shuffle } from "shuffle-seed";
 
 export default class SocialExposure extends React.Component {
-  renderSocialInteraction = otherPlayer => {
+  renderSocialInteraction = (otherPlayer, player, stage) => {
     // "or 0" here if the user hasn't submitted a guess, defaulting to 0
-    const guess = otherPlayer.round.get("guess");
+	
+	var question;
+	if(stage.displayName === "Check concept")
+	{
+		if(1 === player.get("p_id"))
+			question = "The correct concept by the other player is: " + otherPlayer.round.get("set_concept");
+		else
+			question = "The guess concept by the other player is: " + otherPlayer.round.get("guess_concept");
+	}
+	else if(stage.displayName === "Round Outcome")
+	{
+		if(1 === player.get("p_id"))
+			question = "Your guess is: " + otherPlayer.round.get("judgment");
+		else
+		    null
+	}
+	else
+		question = player.round.get("interact_des") + " " + otherPlayer.round.get("question");
+
+
+
     return (
       <Card className={"alter"} elevation={Elevation.TWO} key={otherPlayer._id}>
         <span className="image">
@@ -29,7 +49,7 @@ export default class SocialExposure extends React.Component {
           <img src={otherPlayer.get("avatar")} />
         </span>
 
-        <Slider
+        {/* <Slider
           min={0}
           max={1}
           stepSize={0.01}
@@ -37,13 +57,15 @@ export default class SocialExposure extends React.Component {
           showTrackFill={false}
           disabled
           hideHandleOnEmpty
-        />
+		/> */}
+		
+		<textarea value={question}></textarea>
       </Card>
     );
   };
 
   render() {
-    const { game, player, round } = this.props;
+    const { game, player, round, stage } = this.props;
 
     const alterIds = player.get("alterIds");
     const feedbackTime = round.get("displayFeedback");
@@ -59,10 +81,10 @@ export default class SocialExposure extends React.Component {
     return (
       <div className="social-exposure">
         <p>
-          <strong>You are following:</strong>
+          <strong>Your partner:</strong>
         </p>
         {!_.isEmpty(alters)
-          ? alters.map(alter => this.renderSocialInteraction(alter))
+          ? alters.map(alter => this.renderSocialInteraction(alter, player, stage))
           : "You are currently NOT following anyone"}
       </div>
     );

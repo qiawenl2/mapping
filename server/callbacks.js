@@ -5,7 +5,7 @@ import Empirica from "meteor/empirica:core";
 // the game.
 Empirica.onGameStart(game => {
   game.set("justStarted", true); // I use this to play the sound on the UI when the game starts
-
+  game.set("concept", 0);
   console.log("game", game._id, "started");
 });
 
@@ -13,10 +13,26 @@ Empirica.onGameStart(game => {
 // It receives the same options as onGameStart, and the round that is starting.
 Empirica.onRoundStart((game, round) => {
   console.log("round", round.index, "started");
-  game.players.forEach(player => {
+  game.players.forEach((player, i) => {
+	player.round.set("p_id", i);
     player.round.set("alterIds", player.get("alterIds"));
-    player.round.set("guess", null);
-    player.round.set("difficulty", player.get("difficulty"));
+	player.round.set("guess", null);
+	player.round.set("choice", null);
+
+	if(i === 0)
+		player.round.set("interact_des", "What would it be, if it is:");
+	else
+		player.round.set("interact_des", "it would be :");
+
+	player.round.set("question", null);
+	player.round.set("set_concept", null);
+	player.round.set("guess_concept", null);
+	player.round.set("judgment",null);
+	player.round.set("category",null)
+	player.round.set("difficulty", player.get("difficulty"));
+	// console.log("game", player.index, "player id");
+	//player.round.set("p_id", i);
+	//console.log("player", player.p_id, "p_id");
   });
 
   const feedbackTime =
