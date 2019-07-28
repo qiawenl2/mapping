@@ -182,6 +182,16 @@ export default class TaskResponse extends React.Component {
 		  );
 	  }
   };
+
+  renderMoveon = (round, player)=> {
+	  return(
+
+		<Label>
+			Click "Submit" whenever you are ready to move on...
+		</Label>
+	  );
+  };
+
   renderJudgement(player,round){
 	  const { stage } = this.props;
 	  const isGuess = stage.displayName === "Guess concept";
@@ -433,7 +443,11 @@ export default class TaskResponse extends React.Component {
 
 			<FormGroup>
 				{!isOutcome ? this.renderCurrentChoice(round, player) : null}
-				{!isOutcome ? this.renderEditableTextConceptCatalog(player, round, isOutcome) : null}
+				{!isOutcome ? this.renderEditableTextConceptCatalog(player, round, isOutcome) :null}
+			</FormGroup>
+
+			<FormGroup>
+				{isQuestion ||isGuess ? this.renderMoveon(round, player) : null}
 			</FormGroup>
 
 			{/*We only show self feedback if it is feedback time & we show individual feedback & it is outcome*/}
@@ -467,6 +481,10 @@ export default class TaskResponse extends React.Component {
 				{isQuestion ? this.renderCurrentGuess(round, player) : null}
 				{isQuestion ? this.renderEditableText_player1(player, round, isOutcome):null}
 			</FormGroup>
+
+ 			<FormGroup>
+ 				{isSetConcept ||isAnswer ||isCheckconcept ? this.renderMoveon(round, player) : null}
+ 			</FormGroup>
 
 			{/*We only show self feedback if it is feedback time & we show individual feedback & it is outcome*/}
 			{isGuess?
