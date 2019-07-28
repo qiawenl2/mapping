@@ -41,14 +41,14 @@ export default class Round extends React.Component {
               game={game}
             />
           ) : null} */}
-          {social && stage.name === "outcome" ? (
+          {/* {social && stage.name === "outcome" ? (
             <SocialInteraction
               player={player}
               round={round}
               stage={stage}
               game={game}
             />
-          ) : null}
+          ) : null} */}
         </div>
       </div>
     );
