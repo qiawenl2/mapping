@@ -113,7 +113,7 @@ Empirica.onGameEnd(game => {
 
 // These are just some helper functions for the Guess the Correlation Game
 // compute score.
-function computeScore(players, round) {
+/*function computeScore(players, round) {
   const correctAnswer = round.get("task").correctAnswer;
 
   players.forEach(player => {
@@ -128,12 +128,12 @@ function computeScore(players, round) {
 
     player.round.set("score", score);
   });
-}
+}*/
 function computeScore(player,round){
 	const judge = player.round.get("judgment");
 	
 	if (judge === "correct"){
-			player.round.score.set("score",1); 
+			player.round.set("score",1); 
 		} else if (judge === "incorrect"){
 			player.round.set("score",0);
 			

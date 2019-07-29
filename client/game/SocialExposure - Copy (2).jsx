@@ -1,16 +1,17 @@
+//import React, { Component } from "react";
 import React from "react";
 import Slider from "meteor/empirica:slider";
+//import { Text, StyleSheet} from 'react-native';
 import { Card, Elevation } from "@blueprintjs/core";
 import { shuffle } from "shuffle-seed";
 
-// const useStyles = makeStyles({
-// 	card: {
-// 		minWidth: 275,
-// 	},
-// 	pos: {
-// 		marginBottom: 12,
-// 	},
-// });
+const styles = StyleSheet.create({
+  baseText: {
+	fontSize: 20,
+    fontFamily: 'Cochin',
+    fontWeight: 'bold',
+  },
+});
 
 export default class SocialExposure extends React.Component {
 
@@ -28,9 +29,9 @@ export default class SocialExposure extends React.Component {
 	else if (stage.displayName === "Question Phases1")
 	{
 		if(1 === player.get("p_id"))
-			question = "Your partner is thinking about a particular " + otherPlayer.round.get("category");
+			question = "Your partner is thinking about a particular " + otherPlayer.round.get("question");
 		else
-		    question = "What would it be, if it is..." + otherPlayer.round.get("question");
+		    question = "What would it be, if it is..."
 	}
 	else if(stage.displayName === "Round Outcome")
 	{
@@ -75,10 +76,13 @@ export default class SocialExposure extends React.Component {
           disabled
           hideHandleOnEmpty
 		/> */}
+{/* 
+		<Text style = {styles.baseText}>
+		{question}
+		</Text> */}
 
-
-	  <textarea rows = "10" cols ="40" value={question} ></textarea> 
-	  {/*<Text id="textId"  rows="50" cols="60" style="font-size: 50pt, fontWeight: 'bold'">{question}</Text>*/}
+	  <textarea rows = "15" cols ="80" value={question} ></textarea>
+	  {/* <Text id="textId"  rows="50" cols="60" style="font-size: 50pt, fontWeight: 'bold'">{question}</Text> */}
 	  </Card>
     );
   };

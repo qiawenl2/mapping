@@ -113,19 +113,6 @@ export default class TaskResponse extends React.Component {
 		// }
   };
 
-  handleEditTextCategoryChange = str => {
-    const { round, player } = this.props;
-		player.round.set("category", str);
-	//   }
-    // }
-  };
-
-  handleEditTextCategoryRelease = str => {
-	const { round, player } = this.props;
-		player.round.set("category", str);
-		// }
-    // }
-  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -271,16 +258,16 @@ export default class TaskResponse extends React.Component {
     const feedbackTime = round.get("displayFeedback");
 	const correctAnswer = round.get("task").correctAnswer;
 	// const player1 = player.p_id === 1;
-	const isSetConcept = stage.name === "Set concept" ;
+	// const isSetConcept = stage.name === "Set concept" ;
 	const isQuestion = stage.displayName.includes("Question")  //=== "Question Phases1" || stage.displayName === "Question Phases2" || stage.displayName === "Question Phases3";
 
     return (
       <FormGroup>
-        {isSetConcept ? (
+        {isOutcome && feedbackTime ? (
           <EditableText
-		    onChange={this.handleEditTextCategoryChange}
-            onRelease={this.handleEditTextCategoryRelease}
-            value={player.round.get("category")}
+		    onChange={this.handleEditTextChange}
+            onRelease={this.handleEditTextRelease}
+            // value={player.round.get("question")}
             disabled={isQuestion}
             hideHandleOnEmpty
           />
@@ -289,7 +276,7 @@ export default class TaskResponse extends React.Component {
           <EditableText
 		    onChange={this.handleEditTextChange}
             onRelease={this.handleEditTextRelease}
-            //value={player.round.get("question")}
+            // value={player.round.get("question")}
             disabled={isQuestion}
             hideHandleOnEmpty
           />
