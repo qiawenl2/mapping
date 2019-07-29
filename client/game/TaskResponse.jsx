@@ -187,7 +187,7 @@ export default class TaskResponse extends React.Component {
 	  return(
 
 		<Label>
-			Click "Submit" whenever you are ready to move on...
+			Your partner is typing. Click "Submit" whenever you are ready to move on...
 		</Label>
 	  );
   };

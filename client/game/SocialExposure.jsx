@@ -77,7 +77,7 @@ export default class SocialExposure extends React.Component {
 		/> */}
 
 
-      <textarea rows = "15" height="80" value={question} ></textarea>
+      <textarea rows = "15" cols ="80" value={question} ></textarea>
 	  </Card>
     );
   };
