@@ -1,20 +1,68 @@
 treatments:
-  - name: two_players
+  - name: solo
+    factorIds:
+      - LDYtorBMemEchWxoB
+      - qL8h26YncBQyJA7fq
+      - 3kYYXaky46XwqCqs3
+      - MdzxCgDh5rZyYt4S7
+      - KaGAp39QNwcn3HNE6
+      - i2Ca8myYtMDRjCJHw
+      - 3oGEScooi2BhsEKEP
+      - 2YsCrAijbvTAMMo8z
+      - GNXTq424wgxMYAiNb
+      - KWowhkuNyGcWvp2bn
+      - oBQd3x8wKE3f9GkKC
+      - uo5hoxgHYWRGuG4oR
+      - 3ahp7KyDHp4KQCcM6
+      - xBckkRe2KEqcuyf5P
+  - name: dynamic_no_feedback
     factorIds:
       - 9ssjc26yHDZM2nYnx
       - qL8h26YncBQyJA7fq
       - ekcnsAf3Y3jvvqTGb
       - MdzxCgDh5rZyYt4S7
-      - KaGAp39QNwcn3HNE6
+      - Nyu5NejdAuvn2CqYu
+      - i2Ca8myYtMDRjCJHw
+      - 3oGEScooi2BhsEKEP
+      - 2YsCrAijbvTAMMo8z
+      - GNXTq424wgxMYAiNb
+      - KWowhkuNyGcWvp2bn
+      - oBQd3x8wKE3f9GkKC
+      - uo5hoxgHYWRGuG4oR
+      - 3ahp7KyDHp4KQCcM6
+      - h4Fbts28p9uK9rdyK
+  - name: dynamic_self_feedback
+    factorIds:
+      - 9ssjc26yHDZM2nYnx
+      - qL8h26YncBQyJA7fq
+      - ekcnsAf3Y3jvvqTGb
+      - MdzxCgDh5rZyYt4S7
+      - Nyu5NejdAuvn2CqYu
+      - CCuSfLovDqt7gGu8M
+      - 3oGEScooi2BhsEKEP
+      - 2YsCrAijbvTAMMo8z
+      - GNXTq424wgxMYAiNb
+      - xQYgXc66TSLmXBHHk
+      - oBQd3x8wKE3f9GkKC
+      - uo5hoxgHYWRGuG4oR
+      - 3ahp7KyDHp4KQCcM6
+      - ftXgu4kXuin2mFeK5
+  - name: dynamic_full_feedback
+    factorIds:
+      - 9ssjc26yHDZM2nYnx
+      - qL8h26YncBQyJA7fq
+      - ekcnsAf3Y3jvvqTGb
+      - MdzxCgDh5rZyYt4S7
+      - Nyu5NejdAuvn2CqYu
       - CCuSfLovDqt7gGu8M
       - 3oGEScooi2BhsEKEP
       - 2YsCrAijbvTAMMo8z
       - GNXTq424wgxMYAiNb
       - xQYgXc66TSLmXBHHk
       - 5zp8oYE298QbeBWMp
+      - uo5hoxgHYWRGuG4oR
       - 3ahp7KyDHp4KQCcM6
-      - ftXgu4kXuin2mFeK5
-
+      - F2EhmhqbMZXPqKmur
 factorTypes:
   - _id: SaNXnPjBfxztr6uwE
     name: playerCount
@@ -137,8 +185,8 @@ factors:
     value: 1
     factorTypeId: SaNXnPjBfxztr6uwE
   - _id: 9ssjc26yHDZM2nYnx
-    name: two_player
-    value: 2
+    name: group
+    value: 12
     factorTypeId: SaNXnPjBfxztr6uwE
   - _id: qL8h26YncBQyJA7fq
     name: none
@@ -150,11 +198,11 @@ factors:
     factorTypeId: 7xNFGv5WCZAXxjZKc
   - _id: ekcnsAf3Y3jvvqTGb
     name: small_social
-    value: 2
+    value: 3
     factorTypeId: 7xNFGv5WCZAXxjZKc
   - _id: MdzxCgDh5rZyYt4S7
-    name: 45s
-    value: 45
+    name: 30s
+    value: 30
     factorTypeId: QzogBfgatZr8JuAP3
   - _id: CCuSfLovDqt7gGu8M
     name: always
@@ -174,11 +222,7 @@ factors:
     factorTypeId: nixpWHDsnQ9TeEZrQ
   - _id: GNXTq424wgxMYAiNb
     name: full_game
-    value: 7
-    factorTypeId: ivryKtaipqLtfguqP
-  - _id: XNXTq424wgxMYAiUg
-    name: short_game
-    value: 4
+    value: 20
     factorTypeId: ivryKtaipqLtfguqP
   - _id: gybtznggn9JBgfQM7
     name: all_easy

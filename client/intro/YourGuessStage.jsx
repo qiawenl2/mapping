@@ -114,14 +114,16 @@ export default class YourGuessStage extends React.Component {
           <p>
             You will play <strong>{game.treatment.nRounds} rounds</strong> total
             {nStages > 1
-              ? " and each round will consist of " + nStages + " stages."
+              ? " and each round will consist of a set concept stage, 10 Question & Answer stage, a guess concept stage, a check concept stage, and an outcome stage ."
               : "."}
           </p>
 
-          <h3 className="bp3-heading">1. The Response Stage</h3>
+          <h3 className="bp3-heading">1. The Set Concept Stage</h3>
 
           <p>
-            In the <strong>Response</strong> stage you will be shown a
+            In the <strong>Set concept</strong> stage the thinker will be prompted to 
+			enter a concept he/she is thinking about. Also, the thinker should enter the category of that concept.
+			shown a
             correlation like the one shown below. You will be able to use the
             slider to pick a value, and then click <strong>Submit</strong> when
             you are ready. You can take maximum{" "}

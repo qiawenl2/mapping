@@ -14,7 +14,7 @@ import { shuffle } from "shuffle-seed";
 
 export default class SocialExposure extends React.Component {
 
-  renderSocialInteraction = (otherPlayer, player, stage) => {
+  renderSocialInteraction = (otherPlayer, player, stage, round) => {
     // "or 0" here if the user hasn't submitted a guess, defaulting to 0
 	
 	var question;
@@ -35,7 +35,7 @@ export default class SocialExposure extends React.Component {
 	else if(stage.displayName === "Round Outcome")
 	{
 		if(1 === player.get("p_id"))
-			question = "Your guess is: " + otherPlayer.round.get("judgment") + ". Please click next to continue";
+			question = "Your guess is: " + round.get("judgment") + ". Please click next to continue";
 		else
 		    question = "please click next to continue..."
 	}
@@ -103,7 +103,7 @@ export default class SocialExposure extends React.Component {
           <strong>Your partner:</strong>
         </p>
         {!_.isEmpty(alters)
-          ? alters.map(alter => this.renderSocialInteraction(alter, player, stage))
+          ? alters.map(alter => this.renderSocialInteraction(alter, player, stage,round))
           : "You are currently NOT following anyone"}
       </div>
     );
