@@ -261,10 +261,11 @@ export default class TaskResponse extends React.Component {
     
 	const isOutcome = stage.displayName === "Round Outcome" ;
 	const isSetConcept = stage.name === "Set concept";
-	const isAnswer = stage.displayName === "Answer Phases1" || stage.displayName === "Answer Phases2" || stage.displayName === "Answer Phases3";
-	const isGuess = stage.displayName === "Guess concept";
-	const isQuestion = stage.displayName === "Question Phases1" || stage.displayName === "Question Phases2" || stage.displayName === "Question Phases3";
-	const isCheckconcept = stage.displayName === "Check concept"
+	//const isAnswer = stage.displayName === "Answer Phases1" || stage.displayName === "Answer Phases2" || stage.displayName === "Answer Phases3";
+	const isGuess = stage.displayName === "Guess concept";		
+	const isAnswer = stage.displayName.includes("Answer");
+	const isQuestion = stage.displayName.includes("Question");
+	const isCheckconcept = stage.displayName === "Check concept";
 
 	// const feedbackTime = round.get("displayFeedback");
 	// const selfFeedback = game.treatment.selfFeedback;
