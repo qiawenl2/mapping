@@ -122,16 +122,63 @@ export default class YourGuessStage extends React.Component {
 
           <p>
             In the <strong>Set concept</strong> stage the thinker will be prompted to 
-			enter a concept he/she is thinking about. Also, the thinker should enter the category of that concept.
-			shown a
-            correlation like the one shown below. You will be able to use the
-            slider to pick a value, and then click <strong>Submit</strong> when
-            you are ready. You can take maximum{" "}
+			enter a concept he/she is thinking about (e.g., New York). Also, the thinker should enter the category (e.g., city) of that concept.
+			Both of you will be able to click <strong>Submit</strong> whenever you are ready to move on. You can take maximum{" "}
             <strong>{game.treatment.stageDuration}</strong> seconds to submit
             your answer. The <strong>tick mark</strong> by the avatar indicates
             whether a final answer have been submitted for this stage.
           </p>
+                <div className="task-stimulus">
+                  <img src="/instructions/set_concept.gif" className="task-image" />
+                </div>
+		  <h3 className="bp3-heading">2. The Question Stages</h3>
 
+          <p>
+            In the <strong>Question </strong> stages the guesser will ask the thinker a question about that concept, like 
+			"what would it be, if it is a X?" (e.g., color). 
+			In this stage, the thinker could feel free to click "submit" anytime. 
+          </p>
+                <div className="task-stimulus">
+                  <img src="/instructions/question.gif" className="task-image" />
+                </div>
+
+		  <h3 className="bp3-heading">1. The Answer Stages</h3>
+
+          <p>
+            In the <strong>Answer</strong> stage the thinker will be answering the question asked by the guesser. For example, the thinker
+			might feel "gold" is the color that New York would be.
+			In this stage, the guesser could feel free to click "submit" anytime. 
+          </p>
+                <div className="task-stimulus">
+                  <img src="/instructions/answer.gif" className="task-image" />
+                </div>
+		  <h3 className="bp3-heading">1. The Guess concept stage</h3>
+
+          <p>
+            In the <strong>Guess concept</strong> stage the guesser will be prompted to make a guess about the concept.
+          </p>
+                <div className="task-stimulus">
+                  <img src="/instructions/guess_concept.gif" className="task-image" />
+                </div>
+
+		  <h3 className="bp3-heading">1. The Check concept stage</h3>
+
+          <p>
+            In the <strong>Check concept</strong> stage, the thinker would be able to see the guesser's answer, 
+			and the guesser would be able to see the thinker's concept.
+			
+          </p>
+                <div className="task-stimulus">
+                  <img src="/instructions/check_concept.gif" className="task-image" />
+                </div>
+		  <h3 className="bp3-heading">1. The Round outcome stage</h3>
+
+          <p>
+            In the <strong>Round outcome</strong> stage, the guesser would be notified whether he/she is correct. Clicking on "next" would lead to the next round.
+          </p>
+                <div className="task-stimulus">
+                  <img src="/instructions/round_outcome.gif" className="task-image" />
+                </div>
           <div className="round">
             <div className="content">
               {/*Here is the playerProfile*/}
