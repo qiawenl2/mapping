@@ -89,10 +89,10 @@ Empirica.gameInit(game => {
 	player.set("p_id", i);
     player.set("avatar", getAvatar(player, i, "abstract"));
 
-    player.set(
-      "difficulty",
-      getDifficulty(player, i, game.treatment.difficultyTypes)
-    );
+    // player.set(
+    //   "difficulty",
+    //   getDifficulty(player, i, game.treatment.difficultyTypes)
+    // );
     const alterIds = getAlters(
       player,
       i,

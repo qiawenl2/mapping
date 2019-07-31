@@ -38,8 +38,10 @@ export default class SocialExposure extends React.Component {
 		else
 		    question = "please click next to continue..."
 	}
+	else if(1===player.get("p_id"))
+		question = player.round.get("interact_des") + " " + otherPlayer.round.get("answer");
 	else
-		question = player.round.get("interact_des") + " " + otherPlayer.round.get("question");
+	    question = player.round.get("interact_des")+ "  " + otherPlayer.round.get("question");
 
 
 

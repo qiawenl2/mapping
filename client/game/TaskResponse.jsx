@@ -28,7 +28,7 @@ export default class TaskResponse extends React.Component {
 	round.set("concept", str);
   };
 
-   handleEditTextChange = str => {
+   handleEditTextChange1 = str => {
     const { round, stage, player } = this.props;
     if (stage.displayName !== "Round outcome") {
 	  if(stage.displayName === "Guess concept")
@@ -40,7 +40,7 @@ export default class TaskResponse extends React.Component {
 	  }
   };
 
-  handleEditTextRelease = str => {
+  handleEditTextRelease1 = str => {
     const { stage, player } = this.props;
     if (stage.displayName !== "Round outcome") {
 	  if(stage.displayName === "Guess concept")
@@ -52,6 +52,29 @@ export default class TaskResponse extends React.Component {
 	  }
   };
 
+     handleEditTextChange0 = str => {
+    const { round, stage, player } = this.props;
+    if (stage.displayName !== "Round outcome") {
+	  if(stage.displayName === "Guess concept")
+		  player.round.set("guess_concept", str);
+	  if(stage.displayName === "Check concept")
+		  round.set("judgment",str);
+	  else
+	      player.round.set("answer",str);
+	  }
+  };
+
+  handleEditTextRelease0 = str => {
+    const { stage, player } = this.props;
+    if (stage.displayName !== "Round outcome") {
+	  if(stage.displayName === "Guess concept")
+		  player.round.set("guess_concept", str);
+	  if(stage.displayName === "Check concept")
+		  player.round.set("judgment",str)
+	  else
+	      player.round.set("answer",str);
+	  }
+  };
   handleEditTextCategoryChange = str => {
     const { player } = this.props;
 	player.round.set("category", str);
@@ -210,8 +233,8 @@ export default class TaskResponse extends React.Component {
 		):
 		(
           <EditableText
-		    onChange={this.handleEditTextChange}
-            onRelease={this.handleEditTextRelease}
+		    onChange={this.handleEditTextChange0}
+            onRelease={this.handleEditTextRelease0}
             //value={player.round.get("question")}
             disabled={isQuestion}
             hideHandleOnEmpty
@@ -223,14 +246,15 @@ export default class TaskResponse extends React.Component {
 
   renderEditableText_player1(stage, isOutcome) {
 	const isSetConcept = stage.name === "Set concept" ;
-	const isAnswer = stage.displayName === "Answer Phases1" || stage.displayName === "Answer Phases2" || stage.displayName === "Answer Phases3";
-	const isCheckconcept = stage.displayName === "Check concept"
+	//const isAnswer = stage.displayName === "Answer Phases1" || stage.displayName === "Answer Phases2" || stage.displayName === "Answer Phases3";
+	const isAnswer = stage.displayName.includes("Answer");
+	const isCheckconcept = stage.displayName === "Check concept";
 	return (
       <FormGroup>
         {isOutcome ? (
           <EditableText
-		    onChange={this.handleEditTextChange}
-            onRelease={this.handleEditTextRelease}
+		    onChange={this.handleEditTextChange1}
+            onRelease={this.handleEditTextRelease1}
             // value={player.round.get("question")}
             disabled={isOutcome || isSetConcept || isAnswer || isCheckconcept}
             hideHandleOnEmpty
@@ -238,8 +262,8 @@ export default class TaskResponse extends React.Component {
 		):
 		(
           <EditableText
-		    onChange={this.handleEditTextChange}
-            onRelease={this.handleEditTextRelease}
+		    onChange={this.handleEditTextChange1}
+            onRelease={this.handleEditTextRelease1}
             // value={player.round.get("question")}
             disabled={isOutcome || isSetConcept || isAnswer || isCheckconcept}
             hideHandleOnEmpty
