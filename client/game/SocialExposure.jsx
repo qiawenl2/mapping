@@ -64,17 +64,6 @@ export default class SocialExposure extends React.Component {
 
           <img src={otherPlayer.get("avatar")} />
         </span>
-	  	
-		  {/* <Slider
-          min={0}
-          max={1}
-          stepSize={0.01}
-          value={guess || undefined}
-          showTrackFill={false}
-          disabled
-          hideHandleOnEmpty
-		/> */}
-
 
 	  <textarea rows = "7" cols ="50" value={question} ></textarea> 
 	  {/*<Text id="textId"  rows="50" cols="60" style="font-size: 50pt, fontWeight: 'bold'">{question}</Text>*/}
