@@ -27,6 +27,8 @@ Empirica.onRoundStart((game, round) => {
 	else
 		player.round.set("interact_des", "it would be...");
 
+	player.round.set("last_stage_question", null);
+	player.round.set("last_stage_answer", null);
 	player.round.set("question", null);
 	player.round.set("set_concept", null);
 	player.round.set("guess_concept", null);
@@ -50,12 +52,22 @@ Empirica.onRoundStart((game, round) => {
 // It receives the same options as onRoundStart, and the stage that is starting.
 Empirica.onStageStart((game, round, stage) => {
   console.log("stage", stage.name, "started");
+
+  game.players.forEach((player) => {
+   		player.stage.set("stage_question", player.round.get("last_stage_question"));
+   		player.stage.set("stage_answer", player.round.get("last_stage_answer"));
+   });
 });
 
 // It receives the same options as onRoundEnd, and the stage that just ended.
 Empirica.onStageEnd((game, round, stage) => {
 	console.log("stage", stage.name, "ended");
 	
+	game.players.forEach((player) => {
+   		player.round.set("last_stage_question", player.stage.get("stage_question"));
+   		player.round.set("last_stage_answer", player.stage.get("stage_answer"));
+   });
+
 	// if(stage.name.includes("outcome")) {
 		//after the 'interactive' stage, we compute the score and color it
 		// computeScore(game.players, round);

@@ -36,6 +36,13 @@ factorTypes:
     type: Integer
     min: 0
     max: 50
+  - _id: QzogBfgatZr8JuAP2
+    name: stageNum
+    description: The number of stage phases for each round 
+    required: true
+    type: Integer
+    min: 3
+    max: 20
   - _id: QzogBfgatZr8JuAP3
     name: stageDuration
     description: The maximum time in seconds for each stage before moving to the next

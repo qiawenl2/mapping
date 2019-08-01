@@ -36,8 +36,11 @@ export default class TaskResponse extends React.Component {
 	  if(stage.displayName === "Check concept")
 		  round.set("judgment",str);
 	  else
-	      player.round.set("question",str);
+	  {
+		  player.round.set("question",str);
+		  player.stage.set("stage_question", str);
 	  }
+	}
   };
 
   handleEditTextRelease1 = str => {
@@ -48,8 +51,11 @@ export default class TaskResponse extends React.Component {
 	  if(stage.displayName === "Check concept")
 		  player.round.set("judgment",str)
 	  else
-	      player.round.set("question",str);
+	  {
+		  player.round.set("question",str);
+		  player.stage.set("stage_question", str);
 	  }
+	}
   };
 
      handleEditTextChange0 = str => {
@@ -60,8 +66,11 @@ export default class TaskResponse extends React.Component {
 	  if(stage.displayName === "Check concept")
 		  round.set("judgment",str);
 	  else
-	      player.round.set("answer",str);
+	  {
+		  player.round.set("answer",str);
+		  player.stage.set("stage_answer", str);
 	  }
+	}
   };
 
   handleEditTextRelease0 = str => {
@@ -72,8 +81,11 @@ export default class TaskResponse extends React.Component {
 	  if(stage.displayName === "Check concept")
 		  player.round.set("judgment",str)
 	  else
-	      player.round.set("answer",str);
+	  {
+		  player.round.set("answer",str);
+		  player.stage.set("stage_answer", str);
 	  }
+	}
   };
   handleEditTextCategoryChange = str => {
     const { player } = this.props;
