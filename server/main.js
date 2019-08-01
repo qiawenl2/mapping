@@ -124,9 +124,9 @@ Empirica.gameInit(game => {
 		// Interactive Q&A stage number setting 
 		var i, n = 8; // total 8 Q&A phases in every round
 		for (i = 1; i < n+1; i++) {
-			var str_name = "interactive ", str_ques = "Question ", str_ans = "Answer ";
+			var str_ques = "Question ", str_ans = "Answer ";
 
-			str_name += i.toString() + "q";
+			var str_name = "interactive " + i.toString() + "q";
 			str_ques += i.toString();
 			round.addStage({
 				name: str_name,
@@ -134,7 +134,7 @@ Empirica.gameInit(game => {
 				durationInSeconds: game.treatment.stageDuration
 			});
 			
-			str_name += i.toString() + "a";
+			str_name = "interactive " + i.toString() + "a";
 			str_ans += i.toString();
 			round.addStage({
 				name: str_name,
