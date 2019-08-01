@@ -28,7 +28,7 @@ export default class Overview extends React.Component {
                 and you will play simultaneously{" "}
                 <strong>
                   {" "}
-                  with {game.treatment.playerCount} other MTurk worker
+                  with another MTurk worker
                 </strong>
               </span>
 			) : null}
@@ -37,6 +37,8 @@ export default class Overview extends React.Component {
 					<strong>guesser</strong> or a {"  "}
 					<strong>thinker</strong>.
 					<br />
+					The thinker would think about a concept in each round, and the common goal for both of you is to figure that concept out by asking "as if" questions.
+					<br /> 
 					At the beginning of each round, the thinker will be prompted to give a common 
 					concept (e.g., New York, Jesus, etc.). Meanwhile, the thinker should enter the category 
 					of that concept (e.g., city, person, etc.)
@@ -44,6 +46,7 @@ export default class Overview extends React.Component {
 					question like "what would it be, if it is a X(e.g.,profession)?" Then the thinker should reply
 					with a particular entity in X (e.g., teacher) that best describes the concept he/she is thinking about.
 					At the end of each round, the guesser will make a guess about that concept.  
+					<br />
 					<strong>This is a collaborative game and if the guesser get it right both of you will win bonus for it.</strong>
 			</p>
           </p>

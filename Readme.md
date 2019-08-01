@@ -34,7 +34,7 @@ This will allow you to configure the experiment: Factors, Lobby, and Treatments:
 
 [config-mode-inside-image]: ./readme_screenshots/configuration_mode_inside.png
 
-Now, you have the option to create the configuration by `import` and then choosing the file `./real-experiment.yaml`.
+Now, you have the option to create the configuration by `import` and then choosing the file `./mapping_game.yaml`.
 
 Then, you can go back to the Monitoring mode:
 
