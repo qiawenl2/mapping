@@ -120,57 +120,74 @@ Empirica.gameInit(game => {
 
 	//only add the interactive stage if it is NOT the solo condition
     if (game.treatment.altersCount > 0) {
-      round.addStage({
-        name: "interactive 1q",
-        displayName: "Question Phases1",
-        durationInSeconds: game.treatment.stageDuration
-      });
+		
+		// Interactive Q&A stage number setting 
+		var i, n = 8; // total 8 Q&A phases in every round
+		for (i = 1; i < n+1; i++) {
+			var str_name = "interactive ", str_ques = "Question ", str_ans = "Answer ";
+
+			str_name += i.toString() + "q";
+			str_ques += i.toString();
+			round.addStage({
+				name: str_name,
+				displayName: str_ques,
+				durationInSeconds: game.treatment.stageDuration
+			});
+			
+			str_name += i.toString() + "a";
+			str_ans += i.toString();
+			round.addStage({
+				name: str_name,
+				displayName: str_ans,
+				durationInSeconds: game.treatment.stageDuration
+			});
+		}
 	}
 	
-	//only add the interactive stage if it is NOT the solo condition
-    if (game.treatment.altersCount > 0) {
-      round.addStage({
-        name: "interactive 1a",
-        displayName: "Answer Phases1",
-        durationInSeconds: game.treatment.stageDuration
-      });
-	}
+	// //only add the interactive stage if it is NOT the solo condition
+    // if (game.treatment.altersCount > 0) {
+    //   round.addStage({
+    //     name: "interactive 1a",
+    //     displayName: "Answer Phases1",
+    //     durationInSeconds: game.treatment.stageDuration
+    //   });
+	// }
 
-	//only add the interactive stage if it is NOT the solo condition
-    if (game.treatment.altersCount > 0) {
-      round.addStage({
-        name: "interactive 2q",
-        displayName: "Question Phases2",
-        durationInSeconds: game.treatment.stageDuration
-      });
-	}
+	// //only add the interactive stage if it is NOT the solo condition
+    // if (game.treatment.altersCount > 0) {
+    //   round.addStage({
+    //     name: "interactive 2q",
+    //     displayName: "Question Phases2",
+    //     durationInSeconds: game.treatment.stageDuration
+    //   });
+	// }
 
-	//only add the interactive stage if it is NOT the solo condition
-    if (game.treatment.altersCount > 0) {
-      round.addStage({
-        name: "interactive 2a",
-        displayName: "Answer Phases2",
-        durationInSeconds: game.treatment.stageDuration
-      });
-	}
+	// //only add the interactive stage if it is NOT the solo condition
+    // if (game.treatment.altersCount > 0) {
+    //   round.addStage({
+    //     name: "interactive 2a",
+    //     displayName: "Answer Phases2",
+    //     durationInSeconds: game.treatment.stageDuration
+    //   });
+	// }
 
-	//only add the interactive stage if it is NOT the solo condition
-    if (game.treatment.altersCount > 0) {
-      round.addStage({
-        name: "interactive 3q",
-        displayName: "Question Phases3",
-        durationInSeconds: game.treatment.stageDuration
-      });
-	}
+	// //only add the interactive stage if it is NOT the solo condition
+    // if (game.treatment.altersCount > 0) {
+    //   round.addStage({
+    //     name: "interactive 3q",
+    //     displayName: "Question Phases3",
+    //     durationInSeconds: game.treatment.stageDuration
+    //   });
+	// }
 
-	//only add the interactive stage if it is NOT the solo condition
-    if (game.treatment.altersCount > 0) {
-      round.addStage({
-        name: "interactive 3a",
-        displayName: "Answer Phases3",
-        durationInSeconds: game.treatment.stageDuration
-      });
-	}
+	// //only add the interactive stage if it is NOT the solo condition
+    // if (game.treatment.altersCount > 0) {
+    //   round.addStage({
+    //     name: "interactive 3a",
+    //     displayName: "Answer Phases3",
+    //     durationInSeconds: game.treatment.stageDuration
+    //   });
+	// }
 
 
       round.addStage({
