@@ -88,14 +88,16 @@ export default class TaskResponse extends React.Component {
 	}
   };
   handleEditTextCategoryChange = str => {
-    const { player } = this.props;
+    const { player, round } = this.props;
 	player.round.set("category", str);
+	round.set("category", str);
 
   };
 
   handleEditTextCategoryRelease = str => {
-	const { player } = this.props;
+	const { player, round } = this.props;
 	player.round.set("category", str);
+	round.set("category", str);
 
   };
 
