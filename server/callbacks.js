@@ -5,7 +5,9 @@ import Empirica from "meteor/empirica:core";
 // the game.
 Empirica.onGameStart(game => {
   game.set("justStarted", true); // I use this to play the sound on the UI when the game starts
-  
+  game.players.forEach((player,i) => {
+      player.set("p_id", i)
+  });
   console.log("game", game._id, "started");
 });
 
@@ -17,7 +19,12 @@ Empirica.onRoundStart((game, round) => {
   round.set("judgment", null);
 
   game.players.forEach((player, i) => {
-	player.round.set("p_id", i);
+      if (0 === player.get("p_id")){
+          player.set("p_id",1)
+      }
+      else{
+          player.set("p_id",0)
+      }
     player.round.set("alterIds", player.get("alterIds"));
 	player.round.set("guess", null);
 	player.round.set("choice", null);
