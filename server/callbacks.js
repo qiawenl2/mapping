@@ -18,6 +18,7 @@ Empirica.onRoundStart((game, round) => {
   round.set("round_score", 0);
   round.set("judgment", null);
   round.set("category", null);
+  round.set("record",null);
 
   game.players.forEach((player, i) => {
       if (0 === player.get("p_id")){
@@ -60,7 +61,8 @@ Empirica.onRoundStart((game, round) => {
 // It receives the same options as onRoundStart, and the stage that is starting.
 Empirica.onStageStart((game, round, stage) => {
   console.log("stage", stage.name, "started");
-  console.log("category", round.get("category"));
+//   console.log("category", round.get("category"));
+	console.log("record",round.get("record"))
 
 
   game.players.forEach((player) => {
@@ -72,13 +74,17 @@ Empirica.onStageStart((game, round, stage) => {
 // It receives the same options as onRoundEnd, and the stage that just ended.
 Empirica.onStageEnd((game, round, stage, player) => {
 	console.log("stage", stage.name, "ended");
-	console.log("category", round.get("judgment"));
+	// console.log("category", round.get("category"));
 
 	game.players.forEach((player) => {
 		   player.round.set("last_stage_question", player.stage.get("stage_question"));
 		   player.round.set("last_stage_answer", player.stage.get("stage_answer"));
    });
-   	// console.log("last",player.round.get("last_stage_question"))
+	const category = "The thinker is thinking about a particular " + round.get("category");
+	// const question = "Guesser: what would it be, if it is" + player.stage.get("last_stage_question");
+	// const answer = "Thinker: " + player.stage.get("last_stage_answer");
+	console.log(category)
+	console.log("record",round.get("record"))
 
    
 	// if(stage.name.includes("outcome")) {

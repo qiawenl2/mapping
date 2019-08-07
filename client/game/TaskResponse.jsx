@@ -29,7 +29,8 @@ export default class TaskResponse extends React.Component {
   };
 
    handleEditTextChange1 = str => {
-    const { round, stage, player } = this.props;
+	const { round, stage, player } = this.props;
+
     if (stage.displayName !== "Round outcome") {
 	  if(stage.displayName === "Guess concept")
 		  player.round.set("guess_concept", str);
@@ -39,6 +40,8 @@ export default class TaskResponse extends React.Component {
 	  {
 		  player.round.set("question",str);
 		  player.stage.set("stage_question", str);
+		  console.log(player.stage.get("stage_question",str));
+		//   round.set("record",round.get("record") + "Guesser: if it is a " + player.stage.get("stage_question") + ", what would it be?");
 	  }
 	}
   };
@@ -54,6 +57,8 @@ export default class TaskResponse extends React.Component {
 	  {
 		  player.round.set("question",str);
 		  player.stage.set("stage_question", str);
+		//   round.set("record",round.get("record") + "if it is a " + player.stage.get("stage_question") + "what would it be?")
+
 	  }
 	}
   };
@@ -91,6 +96,7 @@ export default class TaskResponse extends React.Component {
     const { player, round } = this.props;
 	player.round.set("category", str);
 	round.set("category", str);
+	round.set("record", "The guesser is thinking about a particular " + str);
 
   };
 
@@ -98,6 +104,7 @@ export default class TaskResponse extends React.Component {
 	const { player, round } = this.props;
 	player.round.set("category", str);
 	round.set("category", str);
+	round.set("record", "The guesser is thinking about a particular " + str)
 
   };
 
@@ -116,12 +123,17 @@ export default class TaskResponse extends React.Component {
 		game.players.forEach(player => {
 			player.stage.submit();
 	});
+		isAnswer? round.set("record",round.get("record") + "Thinker: it would be " + player.stage.get("last_stage_answer")):null;
+
 }
 	else if(1 === player.get("p_id") && isQuestion || isGuess || isOutcome)
 	{
 		game.players.forEach(player => {
 			player.stage.submit();
 	});
+	  
+		isQuestion? round.set("record",round.get("record") + "Guesser: if it is a " + player.stage.get("last_stage_question") + ", what would it be?"):null;
+
 	}
     // this.props.player.stage.submit();
   };
