@@ -15,36 +15,36 @@ export default class SocialExposure extends React.Component {
 
   renderSocialInteraction = (otherPlayer, player, stage, round) => {
     // "or 0" here if the user hasn't submitted a guess, defaulting to 0
-	
-	var question;
-	if(stage.displayName === "Check concept")
-	{
-		if(1 === player.get("p_id"))
-			question = "The correct concept by the other player is: " + otherPlayer.round.get("set_concept");
-		else
-			question = "The guess concept by the other player is: " + otherPlayer.round.get("guess_concept");
-	}
-	else if (stage.name === "interactive 1q")
-	{
-		if(1 === player.get("p_id"))
-			question = "Your partner is thinking about a particular " + otherPlayer.round.get("category") +". Please start asking questions about it.";
-		else
-			question = "What would it be, if it is..." + otherPlayer.stage.get("stage_question");
-		    // question = "What would it be, if it is..." + otherPlayer.round.get("question");
-	}
-	else if(stage.displayName === "Round Outcome")
-	{
-		if(1 === player.get("p_id"))
-			question = "Your guess is: " + round.get("judgment") + ". Please click next to continue";
-		else
-		    question = "please click next to continue..."
-	}
-	else if(1===player.get("p_id"))
-		question = player.round.get("interact_des") + " " + otherPlayer.stage.get("stage_answer");
-		// question = player.round.get("interact_des") + " " + otherPlayer.round.get("answer");
-	else
-		question = player.round.get("interact_des")+ "  " + otherPlayer.stage.get("stage_question");
-	    // question = player.round.get("interact_des")+ "  " + otherPlayer.round.get("question");
+	const record = round.get("record");
+	// var question;
+	// if(stage.displayName === "Check concept")
+	// {
+	// 	if(1 === player.get("p_id"))
+	// 		question = "The correct concept by the other player is: " + otherPlayer.round.get("set_concept");
+	// 	else
+	// 		question = "The guess concept by the other player is: " + otherPlayer.round.get("guess_concept");
+	// }
+	// else if (stage.name === "interactive 1q")
+	// {
+	// 	if(1 === player.get("p_id"))
+	// 		question = "Your partner is thinking about a particular " + otherPlayer.round.get("category") +". Please start asking questions about it.";
+	// 	else
+	// 		question = "What would it be, if it is..." + otherPlayer.stage.get("stage_question");
+	// 	    // question = "What would it be, if it is..." + otherPlayer.round.get("question");
+	// }
+	// else if(stage.displayName === "Round Outcome")
+	// {
+	// 	if(1 === player.get("p_id"))
+	// 		question = "Your guess is: " + round.get("judgment") + ". Please click next to continue";
+	// 	else
+	// 	    question = "please click next to continue..."
+	// }
+	// else if(1===player.get("p_id"))
+	// 	question = player.round.get("interact_des") + " " + otherPlayer.stage.get("stage_answer");
+	// 	// question = player.round.get("interact_des") + " " + otherPlayer.round.get("answer");
+	// else
+	// 	question = player.round.get("interact_des")+ "  " + otherPlayer.stage.get("stage_question");
+	//     // question = player.round.get("interact_des")+ "  " + otherPlayer.round.get("question");
 
 
 
@@ -70,7 +70,7 @@ export default class SocialExposure extends React.Component {
           <img src={otherPlayer.get("avatar")} />
         </span>
 
-	  <textarea rows = "7" cols ="50" value={question} ></textarea> 
+	  <textarea rows = "7" cols ="50" value={record} ></textarea> 
 	  {/*<Text id="textId"  rows="50" cols="60" style="font-size: 50pt, fontWeight: 'bold'">{question}</Text>*/}
 	  
 	  </Card>

@@ -40,7 +40,7 @@ export default class TaskResponse extends React.Component {
 	  {
 		  player.round.set("question",str);
 		  player.stage.set("stage_question", str);
-		  console.log(player.stage.get("stage_question",str));
+		//   console.log(player.stage.get("stage_question",str));
 		//   round.set("record",round.get("record") + "Guesser: if it is a " + player.stage.get("stage_question") + ", what would it be?");
 	  }
 	}
@@ -96,7 +96,7 @@ export default class TaskResponse extends React.Component {
     const { player, round } = this.props;
 	player.round.set("category", str);
 	round.set("category", str);
-	round.set("record", "The guesser is thinking about a particular " + str);
+	round.set("record", "The guesser is thinking about a particular " + str + "\n");
 
   };
 
@@ -109,7 +109,7 @@ export default class TaskResponse extends React.Component {
   };
 
   handleSubmit = event => {
-	const {player,stage, game} = this.props;
+	const {player,stage, game, round} = this.props;
 	const isOutcome = stage.displayName === "Round Outcome" ;
 	const isSetConcept = stage.name === "Set concept";
 	const isGuess = stage.displayName === "Guess concept";		
@@ -123,7 +123,7 @@ export default class TaskResponse extends React.Component {
 		game.players.forEach(player => {
 			player.stage.submit();
 	});
-		isAnswer? round.set("record",round.get("record") + "Thinker: it would be " + player.stage.get("last_stage_answer")):null;
+		isAnswer? round.set("record",round.get("record") + "\nThinker: it would be " + player.stage.get("stage_answer") + "\n"):null;
 
 }
 	else if(1 === player.get("p_id") && isQuestion || isGuess || isOutcome)
@@ -132,7 +132,7 @@ export default class TaskResponse extends React.Component {
 			player.stage.submit();
 	});
 	  
-		isQuestion? round.set("record",round.get("record") + "Guesser: if it is a " + player.stage.get("last_stage_question") + ", what would it be?"):null;
+		isQuestion? round.set("record",round.get("record") + "\nGuesser: if it is a " + player.stage.get("stage_question") + ", what would it be?"):null;
 
 	}
     // this.props.player.stage.submit();
