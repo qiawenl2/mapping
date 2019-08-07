@@ -100,8 +100,28 @@ export default class TaskResponse extends React.Component {
   };
 
   handleSubmit = event => {
-    event.preventDefault();
-    this.props.player.stage.submit();
+	const {player,stage, game} = this.props;
+	const isOutcome = stage.displayName === "Round Outcome" ;
+	const isSetConcept = stage.name === "Set concept";
+	const isGuess = stage.displayName === "Guess concept";		
+	const isAnswer = stage.displayName.includes("Answer");
+	const isQuestion = stage.displayName.includes("Question");
+	const isCheckconcept = stage.displayName === "Check concept"; 
+	event.preventDefault();
+
+	if (0 === player.get("p_id") && isSetConcept || isAnswer || isOutcome || isCheckconcept)
+	{
+		game.players.forEach(player => {
+			player.stage.submit();
+	});
+}
+	else if(1 === player.get("p_id") && isQuestion || isGuess || isOutcome)
+	{
+		game.players.forEach(player => {
+			player.stage.submit();
+	});
+	}
+    // this.props.player.stage.submit();
   };
 
   renderSubmitted = () => {
@@ -148,7 +168,7 @@ export default class TaskResponse extends React.Component {
 			return (
 
 				<Label>
-					please enter the category of the concept that you are thinking about (e.g. City, animal, etc.): {/*player.round.get("category")*/}
+					what is the category of concept (e.g. City, animal, etc.): {/*player.round.get("category")*/}
 				</Label>
 			);
 		}
@@ -311,6 +331,11 @@ export default class TaskResponse extends React.Component {
 		return (
 		<div className="task-response">
 			<form onSubmit={this.handleSubmit}>
+			
+			<FormGroup>
+				{!isOutcome ? this.renderCurrentChoice(player) : null}
+				{!isOutcome ? this.renderEditableTextConceptCatalog(round, stage, isOutcome) :null}
+			</FormGroup>
 
 			<FormGroup>
 			 	{isSetConcept ? this.renderCurrentCategory(player) : null}
@@ -322,14 +347,11 @@ export default class TaskResponse extends React.Component {
 				{isAnswer ? this.renderEditableText(player, stage):null}
 			</FormGroup>
 
-			<FormGroup>
-				{!isOutcome ? this.renderCurrentChoice(player) : null}
-				{!isOutcome ? this.renderEditableTextConceptCatalog(round, stage, isOutcome) :null}
-			</FormGroup>
 
-			<FormGroup>
+
+			{/* <FormGroup>
 				{isQuestion ||isGuess ? this.renderMoveon(round, player) : null}
-			</FormGroup>
+			</FormGroup> */}
 
 			{/*We only show self feedback if it is feedback time & we show individual feedback & it is outcome*/}
 			{isCheckconcept
@@ -339,11 +361,20 @@ export default class TaskResponse extends React.Component {
 				? this.renderEditableText(player, stage)
 				: null}
 
-			<FormGroup>
+			{/* <FormGroup>
 				<Button type="submit" icon={"tick"} large={true} fill={true}>
 				{isOutcome ? "Next" : "Submit"}
 				</Button>
-			</FormGroup>
+			</FormGroup> */}
+			<FormGroup>
+        		{isSetConcept || isAnswer || isCheckconcept || isOutcome? (
+          		<Button type = "submit" icon={"tick"} large={true} fill={true}>
+		  		{isOutcome ? "Next": "Submit"}
+		  		</Button>
+				):
+				(<div>your partner is typing, please wait...</div>
+		     )}
+      		</FormGroup>
 			</form>
 		</div>
 		);
@@ -359,9 +390,9 @@ export default class TaskResponse extends React.Component {
 				{isQuestion ? this.renderEditableText_player1(stage, isOutcome):null}
 			</FormGroup>
 
- 			<FormGroup>
+ 			{/* <FormGroup>
  				{isSetConcept ||isAnswer ||isCheckconcept ? this.renderMoveon(round, player) : null}
- 			</FormGroup>
+ 			</FormGroup> */}
 
 			{/*We only show self feedback if it is feedback time & we show individual feedback & it is outcome*/}
 			{isGuess?
@@ -372,12 +403,21 @@ export default class TaskResponse extends React.Component {
  				
 			{/* {isOutcome?
 				this.renderFeedback(player,round):null}  */}
-
 			<FormGroup>
+        		{isQuestion || isGuess || isOutcome? (
+          		<Button type = "submit" icon={"tick"} large={true} fill={true}>
+		  		{isOutcome ? "Next": "Submit"}
+		  		</Button>
+				):
+				(<div>your partner is typing, please wait...</div>
+		     )}
+      		</FormGroup>
+
+			{/* <FormGroup>
 				<Button type="submit" icon={"tick"} large={true} fill={true}>
 				{isOutcome ? "Next" : "Submit"}
 				</Button>
-			</FormGroup>
+			</FormGroup> */}
 			</form>
 		</div>
 		);

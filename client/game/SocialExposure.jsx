@@ -27,7 +27,7 @@ export default class SocialExposure extends React.Component {
 	else if (stage.name === "interactive 1q")
 	{
 		if(1 === player.get("p_id"))
-			question = "Your partner is thinking about a particular " + otherPlayer.round.get("category");
+			question = "Your partner is thinking about a particular " + otherPlayer.round.get("category") +". Please start asking questions about it.";
 		else
 			question = "What would it be, if it is..." + otherPlayer.stage.get("stage_question");
 		    // question = "What would it be, if it is..." + otherPlayer.round.get("question");
