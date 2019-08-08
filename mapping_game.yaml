@@ -66,7 +66,7 @@ factorTypes:
     required: true
     type: Integer
     min: 5
-    max: 60
+    max: 200
   - _id: wAD8GzhvbTy4wHimY
     name: rewiring
     description: Can the player change their alters on each round

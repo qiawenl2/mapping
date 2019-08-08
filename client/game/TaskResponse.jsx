@@ -117,13 +117,14 @@ export default class TaskResponse extends React.Component {
 	const isQuestion = stage.displayName.includes("Question");
 	const isCheckconcept = stage.displayName === "Check concept"; 
 	event.preventDefault();
-
+	
 	if (0 === player.get("p_id") && isSetConcept || isAnswer || isOutcome || isCheckconcept)
 	{
 		game.players.forEach(player => {
 			player.stage.submit();
 	});
 		isAnswer? round.set("record",round.get("record") + "\nThinker: it would be " + player.stage.get("stage_answer") + "\n"):null;
+		isCheckconcept? round.set("record", round.get("record")+ "\nThe thinker is thinking about " + player.round.get("set_concept")+"\n The guesser is " + round.get("judgment")):null;
 
 }
 	else if(1 === player.get("p_id") && isQuestion || isGuess || isOutcome)
@@ -132,7 +133,8 @@ export default class TaskResponse extends React.Component {
 			player.stage.submit();
 	});
 	  
-		isQuestion? round.set("record",round.get("record") + "\nGuesser: if it is a " + player.stage.get("stage_question") + ", what would it be?"):null;
+		isQuestion? round.set("record",round.get("record") + "\nGuesser: if it is " + player.stage.get("stage_question") + ", what would it be?"):null;
+		isGuess? round.set("record",round.get("record")+"\nThe Guesser thinks the concept is " + player.round.get("guess_concept")):null;
 
 	}
     // this.props.player.stage.submit();
@@ -244,7 +246,7 @@ export default class TaskResponse extends React.Component {
             onRelease={this.handleEditTextConceptRelease}
             value={round.get("concept")}
             disabled={!isSetConcept}
-            hideHandleOnEmpty
+			hideHandleOnEmpty
           />
 		):
 		(
@@ -281,7 +283,7 @@ export default class TaskResponse extends React.Component {
           <EditableText
 		    onChange={this.handleEditTextChange0}
             onRelease={this.handleEditTextRelease0}
-            //value={player.round.get("question")}
+            value={player.round.get("answer")}
             disabled={isQuestion}
             hideHandleOnEmpty
           />
@@ -301,7 +303,7 @@ export default class TaskResponse extends React.Component {
           <EditableText
 		    onChange={this.handleEditTextChange1}
             onRelease={this.handleEditTextRelease1}
-            // value={player.round.get("question")}
+            value={player.round.get("question")}
             disabled={isOutcome || isSetConcept || isAnswer || isCheckconcept}
             hideHandleOnEmpty
           />
@@ -310,7 +312,7 @@ export default class TaskResponse extends React.Component {
           <EditableText
 		    onChange={this.handleEditTextChange1}
             onRelease={this.handleEditTextRelease1}
-            // value={player.round.get("question")}
+            value={player.round.get("question")}
             disabled={isOutcome || isSetConcept || isAnswer || isCheckconcept}
             hideHandleOnEmpty
           />
@@ -386,7 +388,7 @@ export default class TaskResponse extends React.Component {
 		  		{isOutcome ? "Next": "Submit"}
 		  		</Button>
 				):
-				(<div>your partner is typing, please wait...</div>
+				(<div><i>your partner is typing, please wait...</i></div>
 		     )}
       		</FormGroup>
 			</form>
@@ -423,7 +425,7 @@ export default class TaskResponse extends React.Component {
 		  		{isOutcome ? "Next": "Submit"}
 		  		</Button>
 				):
-				(<div>your partner is typing, please wait...</div>
+				(<div><i>your partner is typing, please wait...</i></div>
 		     )}
       		</FormGroup>
 
