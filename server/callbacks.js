@@ -19,6 +19,7 @@ Empirica.onRoundStart((game, round) => {
   round.set("judgment", null);
   round.set("category", null);
   round.set("record",null);
+  round.set("concept",null);
 
   game.players.forEach((player, i) => {
       if (0 === player.get("p_id")){
@@ -60,6 +61,7 @@ Empirica.onRoundStart((game, round) => {
 // onRoundStart is triggered before each stage starts.
 // It receives the same options as onRoundStart, and the stage that is starting.
 Empirica.onStageStart((game, round, stage) => {
+	stage.name == "outcome interactive"? stage.set("value",1): stage.set("value", null);
   console.log("stage", stage.name, "started");
 
 
@@ -79,10 +81,12 @@ Empirica.onStageEnd((game, round, stage, player) => {
 		   player.round.set("last_stage_answer", player.stage.get("stage_answer"));
    });
 	const category = "The thinker is thinking about a particular " + round.get("category");
+	// player.stage.get("stage_question")===null || player.stage.get("stage_answer")===null? stage.set("value",null):1;
+	console.log("stage value", stage.get("value"));
 	// const question = "Guesser: what would it be, if it is" + player.stage.get("last_stage_question");
 	// const answer = "Thinker: " + player.stage.get("last_stage_answer");
 	// console.log(category);
-	 console.log("record",round.get("record"));
+	//  console.log("record",round.get("record"));
 
    
 	// if(stage.name.includes("outcome")) {

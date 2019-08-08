@@ -16,16 +16,17 @@ export default class TaskResponse extends React.Component {
   }
 
   handleEditTextConceptChange = str => {
-    const { round, player } = this.props;
+    const { round, player,stage } = this.props;
 	player.round.set("set_concept", str);
 	round.set("concept", str);
-
+	round.get("category") == null || round.get("concept") == null? stage.set("value",null):stage.set("value",1);
   };
 
   handleEditTextConceptRelease = str => {
 	const { round, player } = this.props;
 	player.round.set("set_concept", str);
 	round.set("concept", str);
+	round.get("category") == null || round.get("concept") == null? stage.set("value",null):stage.set("value",1);
   };
 
    handleEditTextChange1 = str => {
@@ -34,12 +35,15 @@ export default class TaskResponse extends React.Component {
     if (stage.displayName !== "Round outcome") {
 	  if(stage.displayName === "Guess concept")
 		  player.round.set("guess_concept", str);
+		  player.round.get("guess_concept") == null? stage.set("value",null):stage.set("value",1);
 	  if(stage.displayName === "Check concept")
 		  round.set("judgment",str);
+		//   round.get("judgment") == null? stage.set("value",null):stage.set("value",1);
 	  else
 	  {
 		  player.round.set("question",str);
 		  player.stage.set("stage_question", str);
+		  player.stage.get("stage_question") == null? stage.set("value",null):stage.set("value",1);
 		//   console.log(player.stage.get("stage_question",str));
 		//   round.set("record",round.get("record") + "Guesser: if it is a " + player.stage.get("stage_question") + ", what would it be?");
 	  }
@@ -51,12 +55,16 @@ export default class TaskResponse extends React.Component {
     if (stage.displayName !== "Round outcome") {
 	  if(stage.displayName === "Guess concept")
 		  player.round.set("guess_concept", str);
+		  player.round.get("guess_concept") == null? stage.set("value",null):stage.set("value",1);
 	  if(stage.displayName === "Check concept")
 		  player.round.set("judgment",str)
+		//   round.get("judgment") == null? stage.set("value",null):stage.set("value",1);
 	  else
 	  {
 		  player.round.set("question",str);
 		  player.stage.set("stage_question", str);
+		  player.stage.get("stage_question") == null? stage.set("value",null):stage.set("value",1);
+
 		//   round.set("record",round.get("record") + "if it is a " + player.stage.get("stage_question") + "what would it be?")
 
 	  }
@@ -68,27 +76,32 @@ export default class TaskResponse extends React.Component {
     if (stage.displayName !== "Round outcome") {
 	  if(stage.displayName === "Guess concept")
 		  player.round.set("guess_concept", str);
-	  if(stage.displayName === "Check concept")
+	  if(stage.displayName === "Check concept"){
 		  round.set("judgment",str);
+		//   console.log("hahaha");
+		  round.get("judgment") == null? stage.set("value",null):stage.set("value",1);}
 	  else
 	  {
 		  player.round.set("answer",str);
 		  player.stage.set("stage_answer", str);
+		  player.stage.get("stage_answer") == null? stage.set("value",null):stage.set("value",1);
 	  }
 	}
   };
 
   handleEditTextRelease0 = str => {
-    const { stage, player } = this.props;
+    const { stage, player, round } = this.props;
     if (stage.displayName !== "Round outcome") {
 	  if(stage.displayName === "Guess concept")
 		  player.round.set("guess_concept", str);
-	  if(stage.displayName === "Check concept")
-		  player.round.set("judgment",str)
+	  if(stage.displayName === "Check concept"){
+		  player.round.set("judgment",str);
+		  round.get("judgment") == null? stage.set("value",null):stage.set("value",1);}
 	  else
 	  {
 		  player.round.set("answer",str);
 		  player.stage.set("stage_answer", str);
+		  player.stage.get("stage_answer") == null? stage.set("value",null):stage.set("value",1);
 	  }
 	}
   };
@@ -97,6 +110,10 @@ export default class TaskResponse extends React.Component {
 	player.round.set("category", str);
 	round.set("category", str);
 	round.set("record", "The guesser is thinking about a particular " + str + "\n");
+	round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
+
+	//round.get("category") == null ? stage.set("value",null):stage.set("value",1);
+	// || player.round.get("set_concept") == null
 
   };
 
@@ -105,7 +122,10 @@ export default class TaskResponse extends React.Component {
 	player.round.set("category", str);
 	round.set("category", str);
 	round.set("record", "The guesser is thinking about a particular " + str)
+	round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
 
+	//round.get("category") == null ? stage.set("value",null):stage.set("value",1);
+	//|| player.round.get("set_concept") == null
   };
 
   handleSubmit = event => {
@@ -118,24 +138,24 @@ export default class TaskResponse extends React.Component {
 	const isCheckconcept = stage.displayName === "Check concept"; 
 	event.preventDefault();
 	
-	if (0 === player.get("p_id") && isSetConcept || isAnswer || isOutcome || isCheckconcept)
-	{
-		game.players.forEach(player => {
-			player.stage.submit();
-	});
-		isAnswer? round.set("record",round.get("record") + "\nThinker: it would be " + player.stage.get("stage_answer") + "\n"):null;
-		isCheckconcept? round.set("record", round.get("record")+ "\nThe thinker is thinking about " + player.round.get("set_concept")+"\n The guesser is " + round.get("judgment")):null;
-
-}
-	else if(1 === player.get("p_id") && isQuestion || isGuess || isOutcome)
-	{
-		game.players.forEach(player => {
-			player.stage.submit();
-	});
-	  
-		isQuestion? round.set("record",round.get("record") + "\nGuesser: if it is " + player.stage.get("stage_question") + ", what would it be?"):null;
-		isGuess? round.set("record",round.get("record")+"\nThe Guesser thinks the concept is " + player.round.get("guess_concept")):null;
-
+	if (stage.get("value")==1){
+		if (0 === player.get("p_id") && isSetConcept || isAnswer || isOutcome || isCheckconcept)
+		{
+			game.players.forEach(player => {
+				player.stage.submit();
+			});
+			isAnswer? round.set("record",round.get("record") + "\nThinker: it would be " + player.stage.get("stage_answer") + "\n"):null;
+			isCheckconcept? round.set("record", round.get("record")+ "\nThe thinker is thinking about " + player.round.get("set_concept")+"\n The guesser is " + round.get("judgment")):null;
+		}
+		else if(1 === player.get("p_id") && isQuestion || isGuess || isOutcome)
+		{
+			game.players.forEach(player => {
+				player.stage.submit();
+			});
+			
+			isQuestion? round.set("record",round.get("record") + "\nGuesser: if it is " + player.stage.get("stage_question") + ", what would it be?"):null;
+			isGuess? round.set("record",round.get("record")+"\nThe Guesser thinks the concept is " + player.round.get("guess_concept")):null;
+		}
 	}
     // this.props.player.stage.submit();
   };
@@ -314,7 +334,7 @@ export default class TaskResponse extends React.Component {
             onRelease={this.handleEditTextRelease1}
             // value={player.round.get("question")}
             disabled={isOutcome || isSetConcept || isAnswer || isCheckconcept}
-            hideHandleOnEmpty
+			hideHandleOnEmpty
           />
 		)}
       </FormGroup>
