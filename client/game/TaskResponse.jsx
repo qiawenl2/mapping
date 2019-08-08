@@ -283,7 +283,7 @@ export default class TaskResponse extends React.Component {
           <EditableText
 		    onChange={this.handleEditTextChange0}
             onRelease={this.handleEditTextRelease0}
-            value={player.round.get("answer")}
+            // value={player.round.get("answer")}
             disabled={isQuestion}
             hideHandleOnEmpty
           />
@@ -303,7 +303,7 @@ export default class TaskResponse extends React.Component {
           <EditableText
 		    onChange={this.handleEditTextChange1}
             onRelease={this.handleEditTextRelease1}
-            value={player.round.get("question")}
+            // value={player.round.get("question")}
             disabled={isOutcome || isSetConcept || isAnswer || isCheckconcept}
             hideHandleOnEmpty
           />
@@ -312,7 +312,7 @@ export default class TaskResponse extends React.Component {
           <EditableText
 		    onChange={this.handleEditTextChange1}
             onRelease={this.handleEditTextRelease1}
-            value={player.round.get("question")}
+            // value={player.round.get("question")}
             disabled={isOutcome || isSetConcept || isAnswer || isCheckconcept}
             hideHandleOnEmpty
           />
