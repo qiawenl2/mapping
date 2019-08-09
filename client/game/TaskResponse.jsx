@@ -19,14 +19,14 @@ export default class TaskResponse extends React.Component {
     const { round, player,stage } = this.props;
 	player.round.set("set_concept", str);
 	round.set("concept", str);
-	round.get("category") == null || round.get("concept") == null? stage.set("value",null):stage.set("value",1);
+	player.round.get("set_concept") == null? stage.set("value",null):stage.set("value",1);
   };
 
   handleEditTextConceptRelease = str => {
 	const { round, player } = this.props;
 	player.round.set("set_concept", str);
 	round.set("concept", str);
-	round.get("category") == null || round.get("concept") == null? stage.set("value",null):stage.set("value",1);
+	player.round.get("set_concept") == null? stage.set("value",null):stage.set("value",1);
   };
 
    handleEditTextChange1 = str => {
@@ -110,7 +110,7 @@ export default class TaskResponse extends React.Component {
 	player.round.set("category", str);
 	round.set("category", str);
 	round.set("record", "The guesser is thinking about a particular " + str + "\n");
-	round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
+	// round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
 
 	//round.get("category") == null ? stage.set("value",null):stage.set("value",1);
 	// || player.round.get("set_concept") == null
@@ -122,7 +122,7 @@ export default class TaskResponse extends React.Component {
 	player.round.set("category", str);
 	round.set("category", str);
 	round.set("record", "The guesser is thinking about a particular " + str)
-	round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
+	// round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
 
 	//round.get("category") == null ? stage.set("value",null):stage.set("value",1);
 	//|| player.round.get("set_concept") == null
@@ -137,10 +137,12 @@ export default class TaskResponse extends React.Component {
 	const isQuestion = stage.displayName.includes("Question");
 	const isCheckconcept = stage.displayName === "Check concept"; 
 	event.preventDefault();
-	
-	if (stage.get("value")==1){
-		if (0 === player.get("p_id") && isSetConcept || isAnswer || isOutcome || isCheckconcept)
+
+	if (round.get("category") !== null){
+		if (stage.get("value")===1)
 		{
+			if (0 === player.get("p_id") && isSetConcept|| isAnswer || isOutcome || isCheckconcept)
+			{
 			game.players.forEach(player => {
 				player.stage.submit();
 			});
@@ -156,9 +158,10 @@ export default class TaskResponse extends React.Component {
 			isQuestion? round.set("record",round.get("record") + "\nGuesser: if it is " + player.stage.get("stage_question") + ", what would it be?"):null;
 			isGuess? round.set("record",round.get("record")+"\nThe Guesser thinks the concept is " + player.round.get("guess_concept")):null;
 		}
-	}
+	};
     // this.props.player.stage.submit();
   };
+};
 
   renderSubmitted = () => {
     return (
