@@ -1,4 +1,6 @@
 import Empirica from "meteor/empirica:core";
+// import Timer from "../client/game/Timer";
+// import Sorry from "../client/exit/Sorry";
 
 // onGameStart is triggered once per game before the game starts, and before
 // the first onRoundStart. It receives the game and list of all the players in
@@ -74,6 +76,13 @@ Empirica.onStageStart((game, round, stage) => {
 // It receives the same options as onRoundEnd, and the stage that just ended.
 Empirica.onStageEnd((game, round, stage, player) => {
 	console.log("stage", stage.name, "ended");
+	// const { remainingSeconds } = this.props;
+	// const classes = ["Sorry"];
+	// if (remainingSeconds<1){
+	// if (stage.displayName === "Round Outcome"){
+	// 	player.exitStatus.set("stageTimeOut");
+		// classes.push();
+	// };
 	// console.log("category", round.get("category"));
 
 	game.players.forEach((player) => {

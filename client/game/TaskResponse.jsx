@@ -184,7 +184,10 @@ export default class TaskResponse extends React.Component {
 			return (
 				
 			<Label>
-				it would be :{/*player.round.get("question")*/}
+			    <strong>Your answer:</strong> 
+				<br />
+				<br />
+				It would be :{/*player.round.get("question")*/}
 			</Label>
 
 			);
@@ -193,7 +196,10 @@ export default class TaskResponse extends React.Component {
 		{
 			return (
 			<Label>
-				What would it be, if it is: {/*player.round.get("question")*/}
+				<strong>Your question:</strong>
+				<br />
+				<br />
+				 What would it be, if it is: {/*player.round.get("question")*/}
 				
 			</Label>
 			);
@@ -252,6 +258,26 @@ export default class TaskResponse extends React.Component {
 		  return(
 		  <Label>
 			  please make a guess :{/*player.round.get("guess_concept")*/}
+		  </Label>
+		  );
+	  }
+  };
+  renderrole(player){
+	  const { stage } = this.props;
+
+	  if(0 === player.get("p_id") )
+	  {
+		  return(
+			  <Label>
+				  <i>You are assigned as the <strong>thinker</strong> in this round!</i>
+			  </Label>
+		  );	  
+	  }
+	  else
+	  {
+		  return(
+		  <Label>
+			  <i>You are assigned as the <strong>guesser</strong> in this round!</i>
 		  </Label>
 		  );
 	  }
@@ -372,6 +398,10 @@ export default class TaskResponse extends React.Component {
 			<form onSubmit={this.handleSubmit}>
 			
 			<FormGroup>
+				{isSetConcept ? this.renderrole(player) : null}
+			</FormGroup>
+
+			<FormGroup>
 				{!isOutcome ? this.renderCurrentChoice(player) : null}
 				{!isOutcome ? this.renderEditableTextConceptCatalog(round, stage, isOutcome) :null}
 			</FormGroup>
@@ -423,6 +453,11 @@ export default class TaskResponse extends React.Component {
 		return (
 		<div className="task-response">
 			<form onSubmit={this.handleSubmit}>
+
+			<FormGroup>
+				{isSetConcept ? this.renderrole(player) : null}
+
+			</FormGroup>
 
 			<FormGroup>
 				{isQuestion ? this.renderCurrentGuess(player) : null}
