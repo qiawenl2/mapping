@@ -1,4 +1,7 @@
 import Empirica from "meteor/empirica:core";
+// import finish from "meteor/empirica:core/api/stages";
+import { Players } from "meteor/empirica:core/api/players/players.js";
+import { Games } from "meteor/empirica:core/api/games/games.js";
 // import Timer from "../client/game/Timer";
 // import Sorry from "../client/exit/Sorry";
 
@@ -74,7 +77,7 @@ Empirica.onStageStart((game, round, stage) => {
 });
 
 // It receives the same options as onRoundEnd, and the stage that just ended.
-Empirica.onStageEnd((game, round, stage, player) => {
+Empirica.onStageEnd((game, round, stage, players) => {
 	console.log("stage", stage.name, "ended");
 	// const { remainingSeconds } = this.props;
 	// const classes = ["Sorry"];
@@ -84,6 +87,51 @@ Empirica.onStageEnd((game, round, stage, player) => {
 		// classes.push();
 	// };
 	// console.log("category", round.get("category"));
+	
+	var isOnline_player0;
+	var isOnline_player1;
+	game.players.forEach((player, i)=> {
+			if(i == 0)
+				isOnline_player0 = player.online;
+			else
+				isOnline_player1 = player.online;
+
+		});
+
+	if(!isOnline_player0 || !isOnline_player1)
+	{
+		
+		console.log("player 0 online status:", isOnline_player0);
+		console.log("player 1 online status:", isOnline_player1);
+		// const { index, gameId, roundId } = stage;
+		const gameId = game._id;
+		// const players = Players.find({ gameId }).fetch();
+		// onGameEnd(game);
+		console.log("The game", game._id, "has ended");
+		const conversionRate = game.treatment.conversionRate || 1;
+		game.players.forEach((player, i) => {
+			if((i == 0 && isOnline_player0) || (i == 1 && isOnline_player1))
+			{
+				const bonus =
+				Math.round(player.get("cumulativeScore") * conversionRate * 100) / 100;
+				player.set("bonus", bonus);
+			}
+		});
+    
+		Players.update(
+		{ _id: { $in: _.pluck(game.players, "_id"), $exists: { exitStatus: false } } },
+		{
+			$set: { exitStatus: "finished", exitAt: new Date() }
+		},
+		{ multi: true }
+		);
+
+		Games.update(gameId, {
+		$set: { finishedAt: new Date() }
+		});
+
+
+	}
 
 	game.players.forEach((player) => {
 		   player.round.set("last_stage_question", player.stage.get("stage_question"));
@@ -152,6 +200,7 @@ Empirica.onGameEnd(game => {
     player.set("bonus", bonus);
   });
 });
+
 
 
 function computeScore(round){
