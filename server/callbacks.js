@@ -91,18 +91,19 @@ Empirica.onStageEnd((game, round, stage, players) => {
 	var isOnline_player0;
 	var isOnline_player1;
 	game.players.forEach((player, i)=> {
-			if(i == 0 && stage.value !==null)
+			if(i == 0)
 				isOnline_player0 = player.online;
-			else if(i == 1 && stage.value != null)
+			else if(i == 1)
 				isOnline_player1 = player.online;
-
 		});
+	
 
-	if(!isOnline_player0 || !isOnline_player1)
+	if(!isOnline_player0 || !isOnline_player1 || stage.get("value") == null)
 	{
 		
 		console.log("player 0 online status:", isOnline_player0);
 		console.log("player 1 online status:", isOnline_player1);
+		console.log("stage value:", stage.get("value"));
 		// const { index, gameId, roundId } = stage;
 		const gameId = game._id;
 		// const players = Players.find({ gameId }).fetch();
@@ -137,7 +138,8 @@ Empirica.onStageEnd((game, round, stage, players) => {
 		   player.round.set("last_stage_question", player.stage.get("stage_question"));
 		   player.round.set("last_stage_answer", player.stage.get("stage_answer"));
    });
-	const category = "The thinker is thinking about a particular " + round.get("category");
+   
+	// const category = "The thinker is thinking about a particular " + round.get("category");
 	// player.stage.get("stage_question")===null || player.stage.get("stage_answer")===null? stage.set("value",null):1;
 	console.log("stage value", stage.get("value"));
 	// const question = "Guesser: what would it be, if it is" + player.stage.get("last_stage_question");
