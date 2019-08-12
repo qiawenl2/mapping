@@ -91,9 +91,9 @@ Empirica.onStageEnd((game, round, stage, players) => {
 	var isOnline_player0;
 	var isOnline_player1;
 	game.players.forEach((player, i)=> {
-			if(i == 0)
+			if(i == 0 && stage.value !==null)
 				isOnline_player0 = player.online;
-			else
+			else if(i == 1 && stage.value != null)
 				isOnline_player1 = player.online;
 
 		});
@@ -121,7 +121,7 @@ Empirica.onStageEnd((game, round, stage, players) => {
 		Players.update(
 		{ _id: { $in: _.pluck(game.players, "_id"), $exists: { exitStatus: false } } },
 		{
-			$set: { exitStatus: "finished", exitAt: new Date() }
+			$set: { exitStatus: "stageTimedOut", exitAt: new Date() }
 		},
 		{ multi: true }
 		);

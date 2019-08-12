@@ -32,12 +32,12 @@ export default class TaskResponse extends React.Component {
    handleEditTextChange1 = str => {
 	const { round, stage, player } = this.props;
 
-    if (stage.displayName !== "Round outcome") {
-	  if(stage.displayName === "Guess concept")
+    if (stage.displayName !== "Outcome") {
+	  if(stage.displayName.includes("Guess"))
 		  player.round.set("guess_concept", str);
 		  player.round.get("guess_concept") == null? stage.set("value",null):stage.set("value",1);
-	  if(stage.displayName === "Check concept")
-		  round.set("judgment",str);
+	  if(stage.displayName.includes("Check"))
+	  round.set("judgment",str);
 		//   round.get("judgment") == null? stage.set("value",null):stage.set("value",1);
 	  else
 	  {
@@ -52,11 +52,11 @@ export default class TaskResponse extends React.Component {
 
   handleEditTextRelease1 = str => {
     const { stage, player } = this.props;
-    if (stage.displayName !== "Round outcome") {
-	  if(stage.displayName === "Guess concept")
+    if (stage.displayName !== "Outcome") {
+	  if(stage.displayName.includes("Guess"))
 		  player.round.set("guess_concept", str);
 		  player.round.get("guess_concept") == null? stage.set("value",null):stage.set("value",1);
-	  if(stage.displayName === "Check concept")
+	  if(stage.displayName.includes("Check"))
 		  player.round.set("judgment",str)
 		//   round.get("judgment") == null? stage.set("value",null):stage.set("value",1);
 	  else
@@ -73,10 +73,10 @@ export default class TaskResponse extends React.Component {
 
      handleEditTextChange0 = str => {
     const { round, stage, player } = this.props;
-    if (stage.displayName !== "Round outcome") {
-	  if(stage.displayName === "Guess concept")
+    if (stage.displayName !== "Outcome") {
+	  if(stage.displayName.includes("Guess"))
 		  player.round.set("guess_concept", str);
-	  if(stage.displayName === "Check concept"){
+	  if(stage.displayName.includes("Check")){
 		  round.set("judgment",str);
 		//   console.log("hahaha");
 		  round.get("judgment") == null? stage.set("value",null):stage.set("value",1);}
@@ -91,10 +91,10 @@ export default class TaskResponse extends React.Component {
 
   handleEditTextRelease0 = str => {
     const { stage, player, round } = this.props;
-    if (stage.displayName !== "Round outcome") {
-	  if(stage.displayName === "Guess concept")
+    if (stage.displayName !== "Outcome") {
+	  if(stage.displayName.includes("Guess"))
 		  player.round.set("guess_concept", str);
-	  if(stage.displayName === "Check concept"){
+	  if(stage.displayName.includes("Check")){
 		  player.round.set("judgment",str);
 		  round.get("judgment") == null? stage.set("value",null):stage.set("value",1);}
 	  else
@@ -109,7 +109,7 @@ export default class TaskResponse extends React.Component {
     const { player, round } = this.props;
 	player.round.set("category", str);
 	round.set("category", str);
-	round.set("record", "The guesser is thinking about a particular " + str + "\n");
+	round.set("record", "The thinker is thinking about a particular " + str + "\n");
 	// round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
 
 	//round.get("category") == null ? stage.set("value",null):stage.set("value",1);
@@ -121,7 +121,7 @@ export default class TaskResponse extends React.Component {
 	const { player, round } = this.props;
 	player.round.set("category", str);
 	round.set("category", str);
-	round.set("record", "The guesser is thinking about a particular " + str)
+	round.set("record", "The thinker is thinking about a particular " + str)
 	// round.get("concept") == null || round.get("category") == null? stage.set("value",null):stage.set("value",1);
 
 	//round.get("category") == null ? stage.set("value",null):stage.set("value",1);
@@ -130,12 +130,12 @@ export default class TaskResponse extends React.Component {
 
   handleSubmit = event => {
 	const {player,stage, game, round} = this.props;
-	const isOutcome = stage.displayName === "Round Outcome" ;
+	const isOutcome = stage.displayName === "Outcome" ;
 	const isSetConcept = stage.name === "Set concept";
-	const isGuess = stage.displayName === "Guess concept";		
-	const isAnswer = stage.displayName.includes("Answer");
-	const isQuestion = stage.displayName.includes("Question");
-	const isCheckconcept = stage.displayName === "Check concept"; 
+	const isGuess = stage.displayName.includes("Guess");
+	const isAnswer = stage.displayName.includes("A");
+	const isQuestion = stage.displayName.includes("Q");
+	const isCheckconcept = stage.displayName === "Check"; 
 	event.preventDefault();
 
 	if (round.get("category") !== null){
@@ -242,8 +242,8 @@ export default class TaskResponse extends React.Component {
 
   renderJudgement(player){
 	  const { stage } = this.props;
-	  const isGuess = stage.displayName === "Guess concept";
-	  const isCheckconcept = stage.displayName === "Check concept";
+	  const isGuess = stage.displayName.includes("Guess");
+	  const isCheckconcept = stage.displayName.includes("Check");
 
 	  if(0 === player.get("p_id") && isCheckconcept)
 	  {
@@ -315,7 +315,7 @@ export default class TaskResponse extends React.Component {
   renderEditableText(player, stage) {
 
 	const isSetConcept = stage.name === "Set concept" ;
-	const isQuestion = stage.displayName.includes("Question")  //=== "Question Phases1" || stage.displayName === "Question Phases2" || stage.displayName === "Question Phases3";
+	const isQuestion = stage.displayName.includes("Q")  //=== "Question Phases1" || stage.displayName === "Question Phases2" || stage.displayName === "Question Phases3";
 
     return (
       <FormGroup>
@@ -344,8 +344,8 @@ export default class TaskResponse extends React.Component {
   renderEditableText_player1(stage, isOutcome) {
 	const isSetConcept = stage.name === "Set concept" ;
 	//const isAnswer = stage.displayName === "Answer Phases1" || stage.displayName === "Answer Phases2" || stage.displayName === "Answer Phases3";
-	const isAnswer = stage.displayName.includes("Answer");
-	const isCheckconcept = stage.displayName === "Check concept";
+	const isAnswer = stage.displayName.includes("Aer");
+	const isCheckconcept = stage.displayName.includes("Check");
 	return (
       <FormGroup>
         {isOutcome ? (
@@ -380,13 +380,13 @@ export default class TaskResponse extends React.Component {
       return this.renderSubmitted();
     }
     
-	const isOutcome = stage.displayName === "Round Outcome" ;
+	const isOutcome = stage.displayName.includes("Outcome") ;
 	const isSetConcept = stage.name === "Set concept";
 	//const isAnswer = stage.displayName === "Answer Phases1" || stage.displayName === "Answer Phases2" || stage.displayName === "Answer Phases3";
-	const isGuess = stage.displayName === "Guess concept";		
-	const isAnswer = stage.displayName.includes("Answer");
-	const isQuestion = stage.displayName.includes("Question");
-	const isCheckconcept = stage.displayName === "Check concept";
+	const isGuess = stage.displayName.includes("Guess")		
+	const isAnswer = stage.displayName.includes("A");
+	const isQuestion = stage.displayName.includes("Q");
+	const isCheckconcept = stage.displayName.includes("Check");
 
 	// const feedbackTime = round.get("displayFeedback");
 	// const selfFeedback = game.treatment.selfFeedback;
