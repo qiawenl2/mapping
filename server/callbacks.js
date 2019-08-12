@@ -159,7 +159,7 @@ Empirica.onStageEnd((game, round, stage, players) => {
 				// { _id: { $in: _.pluck(game.players, "_id"), $exists: { exitStatus: false } } },
 				{ _id: player._id },
 				{
-					$set: { exitStatus: "finished", exitAt: new Date() }
+					$set: { exitStatus: "notResponding", exitAt: new Date() }
 				},
 				// { multi: true }
 				);

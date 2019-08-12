@@ -17,7 +17,10 @@ export default class Sorry extends React.Component {
         msg = "There were NOT enough players for the game to start..";
 		break;
 	  case "stageTimedOut":
-        msg = "It takes too long for one of the player to respond..";
+        msg = "It takes too long for your partner to respond..";
+		break;
+	  case "notResponding":
+        msg = "It takes too long for you to respond..";
         break;
       // case "playerLobbyTimedOut":
       //   msg = "???";
