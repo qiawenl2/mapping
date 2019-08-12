@@ -138,6 +138,7 @@ export default class TaskResponse extends React.Component {
 	const isCheckconcept = stage.displayName === "Check"; 
 	event.preventDefault();
 
+	
 	if (round.get("category") !== null){
 		if (stage.get("value")===1)
 		{
@@ -390,9 +391,22 @@ export default class TaskResponse extends React.Component {
 
 	// const feedbackTime = round.get("displayFeedback");
 	// const selfFeedback = game.treatment.selfFeedback;
-	
+	// if(0 === player.get("p_id")){
+	// 	if(isSetConcept || isAnswer || isCheckconcept || isOutcome)
+	// 		player.set("take_turn", 1);
+	// 	else
+	// 		player.set("take_turn", null);
+	// }
+	// else
+	// {
+	// 	if(isQuestion || isGuess || isOutcome)
+	// 		player.set("take_turn", 1);
+	// 	else
+	// 		player.set("take_turn", null);
+	// }
 
 	if(0 === player.get("p_id")){
+
 		return (
 		<div className="task-response">
 			<form onSubmit={this.handleSubmit}>

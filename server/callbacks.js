@@ -10,15 +10,21 @@ import { Games } from "meteor/empirica:core/api/games/games.js";
 // the game.
 Empirica.onGameStart(game => {
   game.set("justStarted", true); // I use this to play the sound on the UI when the game starts
+  game.set("finished", false);
   game.players.forEach((player,i) => {
-      player.set("p_id", i)
+	  player.set("p_id", i)
+	  player.set("take_turn", null);
   });
+
   console.log("game", game._id, "started");
 });
 
 // onRoundStart is triggered before each round starts, and before onStageStart.
 // It receives the same options as onGameStart, and the round that is starting.
 Empirica.onRoundStart((game, round) => {
+	if(game.get("finished") == true)
+		return;
+
   console.log("round", round.index, "started");
   round.set("round_score", 0);
   round.set("judgment", null);
@@ -66,14 +72,41 @@ Empirica.onRoundStart((game, round) => {
 // onRoundStart is triggered before each stage starts.
 // It receives the same options as onRoundStart, and the stage that is starting.
 Empirica.onStageStart((game, round, stage) => {
+	if(game.get("finished") == true)
+		return;
+
 	stage.name == "outcome interactive"? stage.set("value",1): stage.set("value", null);
-  console.log("stage", stage.name, "started");
+ 	console.log("stage", stage.name, "started");
 
+	const isOutcome = stage.displayName.includes("Outcome") ;
+	const isSetConcept = stage.name === "Set concept";
+	const isGuess = stage.displayName.includes("Guess")		
+	const isAnswer = stage.displayName.includes("A");
+	const isQuestion = stage.displayName.includes("Q");
+	const isCheckconcept = stage.displayName.includes("Check");
 
-  game.players.forEach((player) => {
-   		player.stage.set("stage_question", player.round.get("last_stage_question"));
-   		player.stage.set("stage_answer", player.round.get("last_stage_answer"));
-   });
+	game.players.forEach((player) => {
+			player.stage.set("stage_question", player.round.get("last_stage_question"));
+			player.stage.set("stage_answer", player.round.get("last_stage_answer"));
+			
+			if(0 === player.get("p_id")){
+				if(isSetConcept || isAnswer || isCheckconcept || isOutcome)
+					player.set("take_turn", 1);
+				else
+					player.set("take_turn", null);
+			}
+			else if(1 === player.get("p_id"))
+			{
+				if(isQuestion || isGuess || isOutcome)
+					player.set("take_turn", 1);
+				else
+					player.set("take_turn", null);
+			}
+	});
+
+    
+
+	
 });
 
 // It receives the same options as onRoundEnd, and the stage that just ended.
@@ -118,20 +151,39 @@ Empirica.onStageEnd((game, round, stage, players) => {
 				player.set("bonus", bonus);
 			}
 		});
-    
-		Players.update(
-		{ _id: { $in: _.pluck(game.players, "_id"), $exists: { exitStatus: false } } },
-		{
-			$set: { exitStatus: "stageTimedOut", exitAt: new Date() }
-		},
-		{ multi: true }
-		);
+		
+		game.players.forEach((player, i)=> {
+			if(player.online && player.get("take_turn") == null)
+			{
+				Players.update(
+				// { _id: { $in: _.pluck(game.players, "_id"), $exists: { exitStatus: false } } },
+				{ _id: player._id },
+				{
+					$set: { exitStatus: "finished", exitAt: new Date() }
+				},
+				// { multi: true }
+				);
+			}
+			else
+			{
+				Players.update(
+				// { _id: { $in: _.pluck(game.players, "_id"), $exists: { exitStatus: false } } },
+				{ _id: player._id },
+				{
+					$set: { exitStatus: "stageTimedOut", exitAt: new Date() }
+				},
+				// { multi: true }
+				);
+			}
+		});
+
+		game.set("finished", true);
 
 		Games.update(gameId, {
 		$set: { finishedAt: new Date() }
 		});
 
-
+		return;
 	}
 
 	game.players.forEach((player) => {
