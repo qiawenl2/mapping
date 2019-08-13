@@ -147,7 +147,7 @@ Empirica.gameInit(game => {
 	}
 
       round.addStage({
-        name: "Guess concept",
+        name: "Guess concept interactive",
         displayName: "Guess",
         durationInSeconds: game.treatment.stageDuration
       });
