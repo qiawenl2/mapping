@@ -147,7 +147,7 @@ export default class TaskResponse extends React.Component {
 			game.players.forEach(player => {
 				player.stage.submit();
 			});
-			isAnswer? round.set("record",round.get("record") + "\nThinker: it would be " + player.stage.get("stage_answer") + "\n"):null;
+			isAnswer? round.set("record",round.get("record") + "\t"+ "\t"+ "THINKER: it would be " + player.stage.get("stage_answer") + "\n"):null;
 			isCheckconcept? round.set("record", round.get("record")+ "\nThe thinker is thinking about " + player.round.get("set_concept")+"\n The guesser is " + round.get("judgment")):null;
 		}
 		else if(1 === player.get("p_id") && isQuestion || isGuess || isOutcome)
@@ -156,8 +156,8 @@ export default class TaskResponse extends React.Component {
 				player.stage.submit();
 			});
 			
-			isQuestion? round.set("record",round.get("record") + "\nGuesser: if it is " + player.stage.get("stage_question") + ", what would it be?"):null;
-			isGuess? round.set("record",round.get("record")+"\nThe Guesser thinks the concept is " + player.round.get("guess_concept")):null;
+			isQuestion? round.set("record",round.get("record") + "\nGUESSER: if it is " + player.stage.get("stage_question") + ", what would it be?"):null;
+			isGuess? round.set("record",round.get("record")+"\nThe guesser thinks the concept is " + player.round.get("guess_concept")):null;
 		}
 	};
     // this.props.player.stage.submit();
@@ -258,7 +258,9 @@ export default class TaskResponse extends React.Component {
 	  {
 		  return(
 		  <Label>
-			  please make a guess :{/*player.round.get("guess_concept")*/}
+				<strong>Please make a guess! </strong>{/*player.round.get("guess_concept")*/}
+				<br />
+				You think the <i>thinker</i> is thinking about:
 		  </Label>
 		  );
 	  }

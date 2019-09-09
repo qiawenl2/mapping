@@ -48,7 +48,7 @@ export default class Quiz extends React.Component {
     if (
     //   this.state.nParticipants !== game.treatment.altersCount.toString() ||
     //   this.state.goal !== "estimate" ||
-      this.state.color !== "white"
+      this.state.color !== "no"
     ) {
       this.setState({ quizMistake: true });
     } else {
@@ -107,14 +107,14 @@ export default class Quiz extends React.Component {
             </FormGroup> */}
 
             <FormGroup
-              label={"What color was Napoleon's white horse?"}
+              label={"Can thinker directly tell the guesser the concept he/she is thinking about?"}
               labelFor={"color"}
-              helperText={"(enter a color name)"}
+              helperText={"(enter yes or no)"}
             >
               <div className="pt-form-content">
                 <input
                   className={Classes.INPUT}
-                  placeholder="e.g. brown"
+                  placeholder="e.g. yes"
                   type="text"
                   dir="auto"
                   name="color"

@@ -70,7 +70,7 @@ export default class SocialExposure extends React.Component {
           <img src={otherPlayer.get("avatar")} />
         </span> */}
 
-	  <textarea rows = "10" cols ="60" value={record} ></textarea> 
+	  <textarea rows = "15" cols ="100" value={record} ></textarea> 
 	  {/*<Text id="textId"  rows="50" cols="60" style="font-size: 50pt, fontWeight: 'bold'">{question}</Text>*/}
 	  
 	  </Card>

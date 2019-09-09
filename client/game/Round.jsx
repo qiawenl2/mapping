@@ -13,10 +13,10 @@ export default class Round extends React.Component {
     const { game } = this.props;
     if (game.get("justStarted")) {
       //play the bell sound only once when the game starts
-      gameSound.play();
+      // gameSound.play();
       game.set("justStarted", false);
     } else {
-      roundSound.play();
+      // roundSound.play();
     }
   }
 

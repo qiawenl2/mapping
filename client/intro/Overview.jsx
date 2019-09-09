@@ -33,7 +33,7 @@ export default class Overview extends React.Component {
               </span>
 			) : null} */}
 			<p>
-					You are about to play a game with another MTurk worker. Typically it would last around <strong>15 minutes</strong>.
+					You are about to play a game with another MTurk worker. Typically it will last around <strong>15 minutes</strong>.
 					<br />
 					<br />
 
@@ -41,26 +41,42 @@ export default class Overview extends React.Component {
 					<strong>guesser</strong> or a {"  "}
 					<strong>thinker</strong>.
 					<br />
-					
-					The <strong>thinker</strong> should think about a <strong>common concept</strong> in each round (e.g., Jesus)
+					At the beginning of each round, the thinker will be prompted to give a common 
+					concept (e.g., sun). 
 					<br />
-					
-					The <strong>common goal</strong> for both of you is for the <strong>guesser</strong> to figure that concept out.  
+					After choosing a concept, the thinker should then enter the category 
+					of that concept (e.g., celestial body)
 					<br />
-					The guesser will be prompted to ask a series of <strong>"what would it be, if it is a XXX"</strong> questions.
+					The guesser will be told <strong>only the category</strong> of that concept and will then ask the thinker a
+					question like "What would it be, if it were a X (e.g.,profession)?" 
+					<br />
+					The thinker will then respond with a concept that <strong>does not directly
+					describe characteristics of that concept </strong>(e.g. saying "it would be astronaut" to a "profession" category, if the concept is "sun"), but rather
+					metaphorically describes it (e.g."it would be king")
+					<br />
+					At the end of each round, the guesser will try to guess the concept.  
+					<br />
+					You'll see a box in the middle of the screen with your Q & A record which look like this ("sun" is the concept to be guessed):
+					 {/* <div className="task-stimulus"> */}
+                 		 <img src="/instructions/instruction.jpg" className="task-image" width="900" height="400"/>
+						{/* </div> */}
+					<br />
+					This is a collaborative game, so if the guesser gets it right, then both of you will win a bonus!
+					{/* The guesser will be prompted to ask a series of <strong>"what would it be, if it were a XXX"</strong> questions.
 					<br /> 
-					(e.g., "What would it be, if it is a city?")
+					<strong></strong>(e.g., "What would it be, if it were a city?")
 					<br />
-					The thinker should give a city that best describe the concept.
+					The thinker should then give a city that best describes the concept.
 					{/* At the beginning of each round, the thinker will be prompted to give a common 
-					concept (e.g., New York, Jesus, etc.). Meanwhile, the thinker should enter the category 
-					of that concept (e.g., city, person, etc.)
-					The guesser will be notified the category of that concept and ask the thinker a
-					question like "what would it be, if it is a X(e.g.,profession)?" Then the thinker should reply
-					with a particular entity in X (e.g., teacher) that best describes the concept he/she is thinking about.
-					At the end of each round, the guesser will make a guess about that concept.   */}
+					concept (e.g., New York, Jesus, etc.). After choosing a concept, the thinker should then enter the category 
+					of that concept (e.g., city, person, etc.).
+					The guesser will be told the category of that concept and will then ask the thinker a
+					question like "what would it be, if it were a X(e.g.,profession)?" The thinker will then respond with a concept that does not directly
+					describe characteristics of that concept (e.g. saying "President" to a "Profession" category if the concept is "Donald Trump."), but rather
+					metaphorically describes it.
+					At the end of each round, the guesser will try to guess the concept.   */}
 					<br />
-					<strong>This is a collaborative game and if the guesser get it right both of you will win bonus for it!</strong> 
+					{/* <strong>This is a collaborative game, so if the guesser gets it right, then both of you will win a bonus!</strong> */}
 			</p>
           {/* </p> */}
 
