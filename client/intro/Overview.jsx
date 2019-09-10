@@ -48,7 +48,7 @@ export default class Overview extends React.Component {
 					of that concept (e.g., celestial body)
 					<br />
 					The guesser will be told <strong>only the category</strong> of that concept and will then ask the thinker a
-					question like "What would it be, if it were a X (e.g.,profession)?" 
+					question like "What would it be, if it were a X (e.g.,profession)?" (Please make sure X <strong>is not the same </strong>as what the thinker just gave.)
 					<br />
 					The thinker will then respond with a concept that <strong>does not directly
 					describe characteristics of that concept </strong>(e.g. saying "it would be astronaut" to a "profession" category, if the concept is "sun"), but rather
