@@ -61,7 +61,7 @@ export default class Overview extends React.Component {
                  		 <img src="/instructions/instruction.jpg" className="task-image" width="900" height="400"/>
 						{/* </div> */}
 					<br />
-					This is a collaborative game, so if the guesser gets it right, then both of you will win a bonus!
+					This is a collaborative game, so if the guesser gets it right, then both of you will win!
 					{/* The guesser will be prompted to ask a series of <strong>"what would it be, if it were a XXX"</strong> questions.
 					<br /> 
 					<strong></strong>(e.g., "What would it be, if it were a city?")

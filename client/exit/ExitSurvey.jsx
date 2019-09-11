@@ -30,12 +30,12 @@ export default class ExitSurvey extends React.Component {
       <div>
         <h1> Exit Survey </h1>
         <h3>
-		  Please complete the following survey to receive your bonus! 
+		  Please complete the following survey to receive your rewawrd for participation! 
 		  <br />
-		  If you don't feel comfortable answering any of the questions below, please skip it.
+		  {/* If you don't feel comfortable answering any of the questions below, please skip it. */}
 		  {/* <em>{player._id}</em>. */}
         </h3>
-        <p>
+        {/* <p>
           You final{" "}
           <strong>
             <em>bonus is ${player.get("bonus") || 0}</em>
@@ -45,7 +45,7 @@ export default class ExitSurvey extends React.Component {
             <em>${game.treatment.basePay} base reward</em>
           </strong>{" "}
           for completing the HIT.
-        </p>
+        </p> */}
       </div>
     );
   };
@@ -56,12 +56,12 @@ export default class ExitSurvey extends React.Component {
     return (
       <div>
         {" "}
-        <p>
+        {/* <p>
           Please answer the following short survey. You do not have to provide
           any information you feel uncomfortable with.
-        </p>
+        </p> */}
         <form onSubmit={this.handleSubmit}>
-          <div className="form-line">
+          {/* <div className="form-line">
             <FormGroup
               inline={true}
               label={"Age"}
@@ -100,9 +100,9 @@ export default class ExitSurvey extends React.Component {
                 // required
               />
             </FormGroup>
-          </div>
+          </div> */}
 
-          <div className="form-line">
+          {/* <div className="form-line">
             <RadioGroup
               inline={true}
               name="education"
@@ -139,7 +139,7 @@ export default class ExitSurvey extends React.Component {
                 onChange={this.handleChange}
               />
             </RadioGroup>
-          </div>
+          </div> */}
 
           <div className="form-line thirds">
             <FormGroup
@@ -160,7 +160,7 @@ export default class ExitSurvey extends React.Component {
               />
             </FormGroup>
 
-            <FormGroup
+            {/* <FormGroup
               className={"form-group"}
               inline={false}
               label={"Do you feel the pay was fair?"}
@@ -176,7 +176,7 @@ export default class ExitSurvey extends React.Component {
                 value={fair}
                 fill={true}
               />
-            </FormGroup>
+            </FormGroup> */}
 
             <FormGroup
               className={"form-group"}
