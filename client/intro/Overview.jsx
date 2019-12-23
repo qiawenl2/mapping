@@ -33,7 +33,7 @@ export default class Overview extends React.Component {
               </span>
 			) : null} */}
 			<p>
-					You are about to play a game with another MTurk worker. Typically it will last around <strong>15 minutes</strong>.
+					You are about to play a game with another participant. Typically it will last less than <strong>30 minutes</strong>.
 					<br />
 					<br />
 
