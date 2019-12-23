@@ -51,18 +51,22 @@ export default class Sorry extends React.Component {
           {/*</p>*/}
 
           {player.exitStatus === "gameLobbyTimedOut" ? (
+            //<p>
+            //  Please submit <em>{player._id}</em> as the survey code in order to
+            //  receive the $1 base payment for your time today. We will also add
+            //  $0.1 showing-up bonus with the approval of this HIT.
+            //</p>
             <p>
-              Please submit <em>{player._id}</em> as the survey code in order to
-              receive the $1 base payment for your time today. We will also add
-              $0.1 showing-up bonus with the approval of this HIT.
             </p>
 		  ) : null}
 		  
 		  {player.exitStatus === "stageTimedOut" ? (
+            //<p>
+             // Please submit <em>{player._id}</em> as the survey code and your Prolific ID to qliu295@wisc.edu in order to
+             // receive the $1 base payment for your time today. We will also add
+             // $0.1 showing-up bonus with the approval of this HIT.
+            //</p>
             <p>
-              Please submit <em>{player._id}</em> as the survey code in order to
-              receive the $1 base payment for your time today. We will also add
-              $0.1 showing-up bonus with the approval of this HIT.
             </p>
           ) : null}
 

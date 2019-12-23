@@ -62,6 +62,8 @@ export default class Overview extends React.Component {
 						{/* </div> */}
 					<br />
 					This is a collaborative game, so if the guesser gets it right, then both of you will win!
+          <br />
+          If you have any technical issue, please email Ella at qliu295@wisc.edu.
 					{/* The guesser will be prompted to ask a series of <strong>"what would it be, if it were a XXX"</strong> questions.
 					<br /> 
 					<strong></strong>(e.g., "What would it be, if it were a city?")
