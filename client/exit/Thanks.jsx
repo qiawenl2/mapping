@@ -10,7 +10,7 @@ export default class Thanks extends React.Component {
   render() {
     const { player, game } = this.props;
     //const submissionCode = "Submission code: " + player._id;
-    const submissionCode = "Please click the button below to submit"
+    const submissionCode = "If you are a new player, please click the "New Player" button in the upper right to enter your prolific ID and start your game. \n If you have finished the game, please click the button below to submit"
     
 
         //window.location.href = 'https://app.prolific.co/submissions/complete?cc=8CB8F904'; 
